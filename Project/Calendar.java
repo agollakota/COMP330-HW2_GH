@@ -5,15 +5,27 @@ import java.time.temporal.TemporalAccessor;
 import java.util.Scanner;
 import java.time.LocalDateTime;
 
+import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
+import java.util.Scanner;
+import java.time.LocalDateTime;
+
 public class Calendar {
 
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         Calendar newCalendar = new Calendar();
         newCalendar.askEventDetails();
         newCalendar.getTodaysDate();
         newCalendar.checkEvent();
+        try {
+            newCalendar.readCalendarFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -131,9 +143,23 @@ public class Calendar {
     }
 
 
-    public void readCalendarFile(){
+    public void readCalendarFile() throws IOException {
+        // Open the file
+        System.out.println("Printing out your calendar.....");
 
+        FileInputStream fstream = new FileInputStream("calendarEvents.txt");
+        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
 
+        String strLine;
+
+//Read File Line By Line
+        while ((strLine = br.readLine()) != null)   {
+            // Print the content on the console
+            System.out.println (strLine);
+        }
+
+//Close the input stream
+        br.close();
     }
     public void getTodaysDate(){
         LocalDate localDate = LocalDate.now();
