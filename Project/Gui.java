@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 /**
- * @author Ani, Riley, Sarah, and  Zac
+
  *
  */
 
@@ -27,7 +27,6 @@ public class Gui extends JFrame {
      * This function creates the gif image taken from the file folder
      * and b1 is a button created that says PLAY, but has an empty side label
      * handlerclass is what happens when the button is pressed
-     *The super call renames the window on top to SARZ++
      * If the user exits the gui then the override method will show up and print out message instead of just closing
      */
 
