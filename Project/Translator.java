@@ -1,6 +1,4 @@
 //IMPORTANT: TRANSLATOR FREE TRIAL CAN ONLY BE USED 10 TIMES IN AGGREGATE
-
-package guiTest;
 import javax.swing.*;
 
 import java.awt.*;
@@ -25,6 +23,8 @@ public class Translator extends JFrame{
         setSize(300,250);
       
         pack();
+        
+        String fromLang = "en";
     
         setLocationRelativeTo(null);
       
