@@ -51,8 +51,6 @@ public class Translator extends JFrame{
       
         comboPanel.add(comboLbl);
         comboPanel.add(toLanguages);
-
-        final javax.swing.JTextArea textArea = new javax.swing.JTextArea();
       
     }
   
