@@ -47,7 +47,7 @@ public class Gui extends JFrame {
 
 
         setLayout(new BorderLayout());
-        setContentPane(new JLabel(new ImageIcon("C:\\Users\\zgdel\\COMPRepo\\DevOps\\Homeworks\\untitled\\src\\giphy.gif")));
+        setContentPane(new JLabel(new ImageIcon("giphy.gif")));
         setLayout(new FlowLayout());
         setBackground(Color.BLACK);
         l1 = new JLabel("");
