@@ -9,7 +9,8 @@ import com.sun.speech.freetts.audio.AudioPlayer;
 import com.sun.speech.freetts.audio.SingleFileAudioPlayer;
 import javax.sound.sampled.AudioFileFormat.Type;
 
-//will need external libraries and pom.xml file 
+//will need libraries/pom.xml file 
+
 public class TTSConvert {
 
 	private static final String voiceName = "kevin16";
@@ -24,6 +25,24 @@ public class TTSConvert {
 		voice.allocate();
 		
 	}
+	public void speak(File file) {
+
+		if(file != null) {
+			
+			FileInputStream inputStream = null;
+			try {
+			
+				inputStream = new FileInputStream(file);
+				voice.speak(inputStream);
+				voice.deallocate();
+				
+			} catch (FileNotFoundException e) {
+				
+				System.out.println(e.getMessage());
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	public void audio(File file) {
 		
@@ -34,7 +53,7 @@ public class TTSConvert {
 			
 				inputStream = new FileInputStream(file);
 				//revise code to allow user to enter file path and then append what they want to name their file to it
-				audioPlayer = new SingleFileAudioPlayer("C:\\Users\\Chris\\Desktop\\hello",Type.WAVE);
+				audioPlayer = new SingleFileAudioPlayer("C:\\Users\\Chris\\eclipse-workspace\\CS330 Proj2\\hello",Type.WAVE);
 				voice.setAudioPlayer(audioPlayer);
 				voice.speak(inputStream);
 				voice.deallocate();

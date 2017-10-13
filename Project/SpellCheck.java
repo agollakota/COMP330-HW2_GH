@@ -24,8 +24,6 @@ public class SpellCheck extends JFrame {
 		
 		createView();
 		
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
 		setSize(400,800);
 		
 		pack();
@@ -76,12 +74,12 @@ public class SpellCheck extends JFrame {
 	        try {
 	          BufferedReader input = new BufferedReader(new InputStreamReader(
 	              new FileInputStream(file)));
-	          textArea.read(input, "READING FILE :-)");
+	          textArea.read(input, "Reading File...");
 	        } catch (Exception e) {
 	          e.printStackTrace();
 	        }
 	      } else {
-	        System.out.println("Operation is CANCELLED :(");
+	        System.out.println("Operation Cancelled...");
 	      }
 	    });
 
