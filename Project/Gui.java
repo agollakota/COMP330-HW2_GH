@@ -2,6 +2,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 import com.inet.jortho.SpellChecker;
 
@@ -14,6 +15,11 @@ import java.awt.*;
 public class Gui extends JFrame {
     
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * This function creates the gif image taken from the file folder
      * and b1 is a button created that says PLAY, but has an empty side label
      * handlerclass is what happens when the button is pressed
@@ -27,7 +33,7 @@ public class Gui extends JFrame {
 	
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		setSize(400,800);
+		setSize(470, 470);
 		
 		pack();
 		
@@ -45,12 +51,14 @@ public class Gui extends JFrame {
         JButton sortButton = new JButton ("OPEN SORTER");
         
         JButton noteButton = new JButton("OPEN NOTE PAD");
+        
         noteButton.addActionListener(ev -> {
         	NotePad app = new NotePad();
             app.setVisible(true);
 		});
         
         JButton TTSButton = new JButton("OPEN TTS CONVERTER");
+        
         TTSButton.addActionListener(ev -> {
         	SwingUtilities.invokeLater(new Runnable() {
     	        public void run() {
@@ -60,6 +68,7 @@ public class Gui extends JFrame {
 		});
         
         JButton spellingButton = new JButton("OPEN SPELL CHECKER");
+        
         spellingButton.addActionListener(ev -> {
         	SwingUtilities.invokeLater(new Runnable() {
     	        public void run() {
@@ -70,14 +79,12 @@ public class Gui extends JFrame {
         
         JButton translatorButton = new JButton("OPEN TRANSLATOR");
         
-        
         JButton calendarButton = new JButton("OPEN CALENDAR");
+        getContentPane().add(background);
         
         JPanel buttonPanel = new JPanel();
-
-        getContentPane().add(background);
-       
-        Box box = Box.createVerticalBox();
+        
+        JPanel box = new JPanel(new GridLayout(3,2));
         
         box.add(sortButton);
         box.add(noteButton);
@@ -86,10 +93,12 @@ public class Gui extends JFrame {
         box.add(translatorButton);
         box.add(calendarButton);
        
-        background.add(buttonPanel);
+        background.add(buttonPanel, BorderLayout.SOUTH);
         buttonPanel.add(box);
         buttonPanel.setOpaque(false);
-        
+        box.setBackground(new Color(213,134,145,123));
+        buttonPanel.setBackground(new Color(213,134,145,123));
+   
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

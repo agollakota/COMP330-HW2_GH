@@ -36,16 +36,28 @@ public class SpellCheck extends JFrame {
 
 	public void createView() {
 		
+		
 		JFileChooser fc = new JFileChooser();
 		JTextArea textArea = new JTextArea();
 		textArea.setEditable(true);
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
 		
+		textArea.setToolTipText("<html>Enter or open text into the text area and then click <br/> "
+				                + "on the 'Spell Check' button to find any possible errors in <br/> "
+				                + "spelling. Possible errors in spelling will be underlined and <br/> "
+				                + "when right clicked, will provide suggestions for correction.</html>");
+		
+		
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		scrollPane.setPreferredSize(new Dimension(400, 200));
+		
 		JButton readButton = new JButton("OPEN FILE");
+		readButton.setToolTipText("Click to open a text file into the text area for spell check.");
+		
 		JButton spellButton = new JButton("SPELL CHECK");
+		spellButton.setToolTipText("Click to analyze the text for errors in spelling.");
+		
 		JPanel panel = new JPanel();
 		
 		SpellChecker.setUserDictionaryProvider(new FileUserDictionary());      
@@ -83,7 +95,7 @@ public class SpellCheck extends JFrame {
 	      }
 	    });
 
-		Box box = Box.createVerticalBox();
+		JPanel box = new JPanel(new GridLayout(2,0));
 		box.add(readButton);
 		box.add(spellButton);
 		
