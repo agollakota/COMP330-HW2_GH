@@ -15,14 +15,14 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+@SuppressWarnings("serial")
 public class TranslationGui extends JFrame {
 
-	private static final long serialVersionUID = 1L;
-	
 public TranslationGui() {
 		
 	//Setting details of JFrame
@@ -69,7 +69,7 @@ public TranslationGui() {
 		getContentPane().add(panel);
 		
 		
-		//Setting JMenuBar Details--> Open/Save files
+		//Setting JMenuBar Details + actionListeners for MenuItems--> Open/Save files
 		JMenuBar menu = new JMenuBar();
 		setJMenuBar(menu);
 		menu.setOpaque(true);
@@ -141,6 +141,7 @@ public TranslationGui() {
 				endLanguage.setSelectedIndex(-1);
 			} catch (Exception e) {
 				e.printStackTrace();
+				JOptionPane.showMessageDialog(panel, "Please choose the appropriate 'Start' and 'End' Language Formats.");
 			}
 		});
 

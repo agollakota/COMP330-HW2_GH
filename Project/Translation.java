@@ -5,42 +5,45 @@ import java.net.URL;
 import java.net.URLEncoder;
 import org.json.JSONArray;
 
+//adapted from http://archana-testing.blogspot.com/2016/02/calling-google-translation-api-in-java.html
 
 public class Translation {
 	 
-	 public String parser(String startLang, String endLang, String word) throws Exception  {
+	 public String parser(String startLang, String endLang, String text) throws Exception  {
 
 	  //concatenates startLang and endLang ISO codes to URL to perform URL request
-	  //and encodes desired text to convert to endLang to UTF-8 format	 
+	  //and encodes desired text to UTF-8 for conversion to endLang through Google Translate API		 
 	  String url = "https://translate.googleapis.com/translate_a/single?"+
 	    "client=gtx&"+
 	    "sl=" + startLang + 
 	    "&tl=" + endLang + 
-	    "&dt=t&q=" + URLEncoder.encode(word, "UTF-8");    
+	    "&dt=t&q=" + URLEncoder.encode(text, "UTF-8");    
 	  
-	  URL obj = new URL(url);
-	  HttpURLConnection connection = (HttpURLConnection) obj.openConnection(); 
+	  URL con = new URL(url);
+	  HttpURLConnection connection = (HttpURLConnection) con.openConnection(); 
 	  connection.setRequestProperty("User-Agent", "Mozilla/5.0");
 	 
-	  BufferedReader in = new BufferedReader(
+	  BufferedReader reader = new BufferedReader(
 	    new InputStreamReader(connection.getInputStream()));
 	  String inputLine;
-	  StringBuffer response = new StringBuffer();
+	  StringBuffer output = new StringBuffer();
 	 
-	  while ((inputLine = in.readLine()) != null) {
-	   response.append(inputLine);
+	  while ((inputLine = reader.readLine()) != null) {
+	   output.append(inputLine);
 	  }
-	  in.close();
+	  reader.close();
 	 
-	  return parseResult(response.toString());
+	  return parseOutput(output.toString());
 	 }
 	 
-	 public String parseResult(String input) throws Exception
-	 {
-	  JSONArray jsonArray = new JSONArray(input);
-	  JSONArray jsonArray2 = (JSONArray) jsonArray.get(0);
-	  JSONArray jsonArray3 = (JSONArray) jsonArray2.get(0);
+	 public String parseOutput(String text) throws Exception {
+		 
+	  //Must use javascript object notation arrays to transmit data between the application and server
+	  //Use of three arrays to grab indexes and expel unnecessary accompanying data 
+	  JSONArray firstArray = new JSONArray(text);
+	  JSONArray secondArray = (JSONArray) firstArray.get(0);
+	  JSONArray thirdArray = (JSONArray) secondArray.get(0);
 	  
-	  return jsonArray3.get(0).toString();
+	  return thirdArray.get(0).toString();
 	 }
 }
