@@ -4,23 +4,20 @@ import java.awt.GridLayout;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.InputStreamReader;
 
-import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-
-import com.inet.jortho.FileUserDictionary;
-import com.inet.jortho.PopupListener;
-import com.inet.jortho.SpellChecker;
-import com.inet.jortho.SpellCheckerOptions;
 
 public class TranslationGui extends JFrame {
 
@@ -28,22 +25,27 @@ public class TranslationGui extends JFrame {
 	
 public TranslationGui() {
 		
+	//Setting details of JFrame
+	
 		createView();
 		
-		setSize(400,800);
+		setSize(400,800);		
 		
-		pack();
+		pack();		
 		
-		setLocationRelativeTo(null);
+		setLocationRelativeTo(null);		
 		
-		setResizable(false);
+		setResizable(false);		
 		
 	}
 
 	public void createView() {
 		
-		String languages[] = {"en","ru","es","fr","hi","de","el","ja"};
+		//Array of supported languages for the Google Translator
+		//Look to documentation for list of ISO codes for supported languages
+		String languages[] = {"en","ru","es","fr","hi","de","el","ja"};		
 		
+		//Creating dropdown menus for language from and language to
 		JComboBox<String> startLanguage = new JComboBox<>(languages);
 		
 		startLanguage.setSelectedIndex(-1);
@@ -52,31 +54,84 @@ public TranslationGui() {
 		
 		endLanguage.setSelectedIndex(-1);
 		
-		JFileChooser fc = new JFileChooser();
+		//Setting details for JTextArea
 		JTextArea textArea = new JTextArea();
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		scrollPane.setPreferredSize(new Dimension(400, 200));
 		textArea.setEditable(true);
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
-		
 		textArea.setToolTipText("<html>Enter or open text into the text area and then click <br/> "
-				                + "on the 'Translate' button to translate from s<br/> "
-				                + "spelling. Possible errors in spelling will be underlined and <br/> "
-				                + "when right clicked, will provide suggestions for correction.</html>");
+				                + "on the 'Translate' button to translate text from initial <br/> "
+				                + "language to desired language.</html>");
+		
+		JPanel panel = new JPanel();
+		getContentPane().add(panel);
 		
 		
-		JScrollPane scrollPane = new JScrollPane(textArea);
-		scrollPane.setPreferredSize(new Dimension(400, 200));
+		//Setting JMenuBar Details--> Open/Save files
+		JMenuBar menu = new JMenuBar();
+		setJMenuBar(menu);
+		menu.setOpaque(true);
 		
-		JButton readButton = new JButton("OPEN FILE");
-		readButton.setToolTipText("Click to open a text file into the text area for translation.");
+		JMenu menuFile = new JMenu("File");
+		
+		menu.add(menuFile);
+		
+		JMenuItem open = new JMenuItem("Open File");
+		menuFile.add(open);
+		
+		JFileChooser fc = new JFileChooser();
+		
+		open.addActionListener(ev -> {
+			 int returnVal = fc.showOpenDialog(panel);
+		      if (returnVal == JFileChooser.APPROVE_OPTION) {
+		        File file = fc.getSelectedFile();
+		        try {
+		          BufferedReader input = new BufferedReader(new InputStreamReader(
+		              new FileInputStream(file)));
+		          textArea.read(input, "Reading File...");
+		        } catch (Exception e) {
+		          e.printStackTrace();
+		        }
+		      } else {
+		        System.out.println("Operation Cancelled...");
+		      }
+		});
+		
+		JMenuItem save = new JMenuItem("Save File");
+		menuFile.add(save);
+		
+		save.addActionListener(ev -> {
+			int returnVal = fc.showOpenDialog(panel);
+		      if (returnVal == JFileChooser.APPROVE_OPTION) {
+		          String area = textArea.getText();
+		    	  File file = fc.getSelectedFile();
+		        try {
+		           FileWriter fw = new FileWriter(file.getPath());
+		           fw.write(area);
+		           fw.flush();
+		           fw.close();
+		           
+		        } catch (Exception e) {
+		          e.printStackTrace();
+		        }
+		      } else {
+		        System.out.println("Operation Cancelled...");
+		      }
+		});
+		
+		/**
+		 *Adding JButton with ActionListener that calls the Translation
+		 *class's method to call and fetch a translation from the Google
+		 *API URL.
+		 *
+		 */
 		
 		JButton translateButton = new JButton("TRANSLATE");
 		translateButton.setToolTipText("Click to convert the language for the current text to the desired language.");
-		
-		JPanel panel = new JPanel();
-		
-		getContentPane().add(panel);
-		
+	
+		//Uses input from the JComboBoxs and the text area to send to the translation method.
 		translateButton.addActionListener(ev -> {
 			Translation translate = new Translation();
 			try {
@@ -88,35 +143,22 @@ public TranslationGui() {
 				e.printStackTrace();
 			}
 		});
-	    
-		readButton.addActionListener(ev -> {
-	      int returnVal = fc.showOpenDialog(panel);
-	      if (returnVal == JFileChooser.APPROVE_OPTION) {
-	        File file = fc.getSelectedFile();
-	        try {
-	          BufferedReader input = new BufferedReader(new InputStreamReader(
-	              new FileInputStream(file)));
-	          textArea.read(input, "Reading File...");
-	        } catch (Exception e) {
-	          e.printStackTrace();
-	        }
-	      } else {
-	        System.out.println("Operation Cancelled...");
-	      }
-	    });
 
+		
 		JLabel addStart = new JLabel("Select start language:");
 		JLabel addEnd = new JLabel("Select end language:");
 		
+		//Chose GridLayout for panel because it allows uniform size for all buttons
 		JPanel box = new JPanel(new GridLayout(6,0));
 		box.add(addStart);
 		box.add(startLanguage);
 		box.add(addEnd);
 		box.add(endLanguage);
-		box.add(readButton);
 		box.add(translateButton);
 		
-	    panel.add(scrollPane, BorderLayout.CENTER);
+	    
+		panel.add(scrollPane, BorderLayout.CENTER);
 	    panel.add(box);
+	    
 	  }
 }

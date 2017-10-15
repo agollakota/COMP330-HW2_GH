@@ -1,16 +1,8 @@
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.Locale;
-import java.util.ResourceBundle;
-
-import com.javanetworkframework.*;
-import com.javanetworkframework.rb.util.AbstractWebTranslator;
 import org.json.JSONArray;
 
 
@@ -18,6 +10,8 @@ public class Translation {
 	 
 	 public String parser(String startLang, String endLang, String word) throws Exception  {
 
+	  //concatenates startLang and endLang ISO codes to URL to perform URL request
+	  //and encodes desired text to convert to endLang to UTF-8 format	 
 	  String url = "https://translate.googleapis.com/translate_a/single?"+
 	    "client=gtx&"+
 	    "sl=" + startLang + 
@@ -41,11 +35,9 @@ public class Translation {
 	  return parseResult(response.toString());
 	 }
 	 
-	 public String parseResult(String inputJson) throws Exception
+	 public String parseResult(String input) throws Exception
 	 {
-
-	  
-	  JSONArray jsonArray = new JSONArray(inputJson);
+	  JSONArray jsonArray = new JSONArray(input);
 	  JSONArray jsonArray2 = (JSONArray) jsonArray.get(0);
 	  JSONArray jsonArray3 = (JSONArray) jsonArray2.get(0);
 	  
