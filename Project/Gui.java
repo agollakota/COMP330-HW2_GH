@@ -2,28 +2,24 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+import com.inet.jortho.SpellChecker;
+
 import java.awt.event.*;
 import java.awt.*;
 /**
-
- *
- */
-
-
-/**This function sets all private attributes
- *
- *  b1 set as JButton
- *  l1 set as JLabel
- *  reg set as JButton but is not used
  *
  */
 
 public class Gui extends JFrame {
-    private JButton reg;
-
-    private JButton b1;
-    private JLabel l1;
+    
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * This function creates the gif image taken from the file folder
      * and b1 is a button created that says PLAY, but has an empty side label
      * handlerclass is what happens when the button is pressed
@@ -31,87 +27,89 @@ public class Gui extends JFrame {
      */
 
     public Gui() {
+
         super("CAZA");
+        
+        createView();
+	
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		setSize(470, 470);
+		
+		pack();
+		
+		setLocationRelativeTo(null);
+		
+		setResizable(false);
 
+    }
 
-
+	public void createView() {
+        Calendar newCalendar = new Calendar();
+        l1 = new JLabel(newCalendar.checkEventToday());
+        l1.setForeground(Color.white);
+        add(l1);
+        JLabel background = new JLabel(new ImageIcon("giphy.gif"));
+        background.setLayout(new BorderLayout());
+        
+        JButton sortButton = new JButton ("OPEN SORTER");
+        
+        JButton noteButton = new JButton("OPEN NOTE PAD");
+        
+        noteButton.addActionListener(ev -> {
+        	NotePad app = new NotePad();
+            app.setVisible(true);
+		});
+        
+        JButton TTSButton = new JButton("OPEN TTS CONVERTER");
+        
+        TTSButton.addActionListener(ev -> {
+        	SwingUtilities.invokeLater(new Runnable() {
+    	        public void run() {
+    	        	new TTSGui().setVisible(true);
+    	        }
+    		});
+		});
+        
+        JButton spellingButton = new JButton("OPEN SPELL CHECKER");
+        
+        spellingButton.addActionListener(ev -> {
+        	SwingUtilities.invokeLater(new Runnable() {
+    	        public void run() {
+    	        	new SpellCheck().setVisible(true);
+    	        }
+    		});
+		});
+        
+        JButton translatorButton = new JButton("OPEN TRANSLATOR");
+        
+        JButton calendarButton = new JButton("OPEN CALENDAR");
+        getContentPane().add(background);
+        
+        JPanel buttonPanel = new JPanel();
+        
+        JPanel box = new JPanel(new GridLayout(3,2));
+        
+        box.add(sortButton);
+        box.add(noteButton);
+        box.add(TTSButton);
+        box.add(spellingButton);
+        box.add(translatorButton);
+        box.add(calendarButton);
+       
+        background.add(buttonPanel, BorderLayout.SOUTH);
+        buttonPanel.add(box);
+        buttonPanel.setOpaque(false);
+        box.setBackground(new Color(213,134,145,123));
+        buttonPanel.setBackground(new Color(213,134,145,123));
+   
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 JOptionPane.showMessageDialog(null, "Have a great day!");
                 dispose();
-
-
             }
         });
 
-
-        setLayout(new BorderLayout());
-        setContentPane(new JLabel(new ImageIcon("giphy.gif")));
-        setLayout(new FlowLayout());
-        setBackground(Color.BLACK);
-        l1 = new JLabel("");
-        b1 = new JButton("OPEN NOTE PAD");
-
-        b1.setForeground(Color.white);
-        b1.setBackground(Color.BLACK);
-
-
-
-
-
-        add(b1);
-
-        HandlerClass handler = new HandlerClass();
-
-        b1.addActionListener(handler);
-
-
-
-
-
+		}
     }
-
-    /**this function starts the notepad when the the play button is pressed
-     *
-     *
-     */
-
-    public  void startGame(){
-        NotePad note = new NotePad();
-
-    }
-
-
-
-
-
-    /** This function takes from the Interface ActionListener which handles the button function.
-     * Sub class of Gui
-     *
-     */
-
-    public class HandlerClass implements ActionListener{
-
-
-
-        public void actionPerformed(ActionEvent event){
-            dispose();
-
-            startGame();
-
-
-
-
-
-        }
-        /** When the button is pressed the window will close and go to the startGame function
-         * @param event
-         *
-         */
-
-
-
-
-
-    }}
