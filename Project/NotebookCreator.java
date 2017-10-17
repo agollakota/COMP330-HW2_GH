@@ -2,14 +2,15 @@
 
 //in a way - try and combine the topo sort w this?
 
-//Documentation/Source:
 
-//https://www.mkyong.com/java/how-to-create-directory-in-java/ -- how to create a new folder
+//test 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Scanner;
+import java.io.*;
 
-package com.mkyong.file;
-
-import java.io.File;
-
+<<<<<<<<< saved version
 public class CreateDirectoryExample {
 
     public static void main(String[] args) {
@@ -48,3 +49,29 @@ import java.util.Scanner;
 import java.io.*;
 
 >>>>>>> b276d09d85d858fb5c69652187615b034bbaf50f
+=========
+public class NotebookCreator extends JFrame{
+    
+    public NotebookCreator(){
+        createView();
+		
+		setSize(400,800);
+		
+		pack();
+		
+		setLocationRelativeTo(null);
+		
+		setResizable(false);
+    }
+    
+    public void createView(){
+        JFileChooser fc = new JFileChooser();
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(true);
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+		
+		
+    }
+}
+>>>>>>>>> local version
