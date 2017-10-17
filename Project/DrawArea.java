@@ -1,7 +1,9 @@
 
 //code base: https://www.dropbox.com/s/zat89hzz1c9y0ti/MainFile.java?dl=0
 
-package com.agollak.swingpaint;
+
+//SOURCE: http://www.ssaurel.com/blog/learn-how-to-make-a-swing-painting-and-drawing-application/
+package com.agollak.SwingPaint;
  
 import java.awt.Color;
 import java.awt.Graphics;

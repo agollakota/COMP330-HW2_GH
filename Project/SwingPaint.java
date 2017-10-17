@@ -1,6 +1,6 @@
 //SOurce: http://www.ssaurel.com/blog/learn-how-to-make-a-swing-painting-and-drawing-application/
 
-package com.agollak.swingpaint;
+ package com.agollak.swingpaint;
  
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
  
 public class SwingPaint {
  
