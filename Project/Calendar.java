@@ -164,3 +164,116 @@ public class Calendar extends JFrame {
 	}
 
 }
+
+/*
+
+import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
+		import java.io.File;
+		import java.io.FileWriter;
+		import java.io.IOException;
+		import java.util.Scanner;
+
+		import javax.swing.JButton;
+		import javax.swing.JFrame;
+		import javax.swing.JLabel;
+		import javax.swing.JPanel;
+		import javax.swing.JTextField;
+
+public class Calendar extends JFrame
+{
+	JPanel jp = new JPanel();
+	JLabel jl = new JLabel();
+	JTextField jt = new JTextField(30);
+	JButton jb = new JButton("Add Event");
+
+
+
+	JLabel jlDate= new JLabel();
+	JTextField jtDate = new JTextField(30);
+
+
+
+	JLabel jlTime = new JLabel();
+	JTextField jtTime = new JTextField(30);
+	public Calendar ()
+	{
+		setTitle("Tutorial");
+		setVisible(true);
+		setSize(400, 200);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+		jp.add(jt);
+		jp.add(jtDate);
+		jp.add(jtTime);
+
+
+		jt.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				String inputEvent = jt.getText();
+				jl.setText(inputEvent);
+			}
+		});
+
+		jtDate.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				String inputDate = jtDate.getText();
+				jlDate.setText(inputDate);
+			}
+		});
+
+		jtTime.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				String inputTime = jtTime.getText();
+				jlTime.setText(inputTime);
+			}
+		});
+
+
+
+		jp.add(jb);
+		jb.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				String inputEvent= jt.getText();
+				jl.setText(inputEvent);
+
+				String inputDate= jtDate.getText();
+				jlDate.setText(inputDate);
+
+				String inputTime= jtTime.getText();
+				jlDate.setText(inputTime);
+
+				try
+				{
+					String filename= "calendarEvents.txt";
+					FileWriter fw = new FileWriter(filename,true); //the true will append the new data
+					fw.write("\n"+inputEvent+" , "+inputDate+" , "+ inputTime);//appends the string to the file
+					fw.close();
+				}
+				catch(IOException ioe)
+				{
+					System.err.println("IOException: " + ioe.getMessage());
+				}
+
+
+			}
+		});
+
+		jp.add(jl);
+		add(jp);
+
+	}
+
+	public static void main(String[] args)
+	{
+		Calendar t = new Calendar();
+	}
+}*/
