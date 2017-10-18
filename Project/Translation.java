@@ -5,6 +5,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import org.json.JSONArray;
 
+//translates user input from text file/text area into any of the supported languages. 
 //adapted from http://archana-testing.blogspot.com/2016/02/calling-google-translation-api-in-java.html
 
 public class Translation {

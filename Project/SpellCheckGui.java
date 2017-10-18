@@ -9,6 +9,7 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.InputStreamReader;
 
 @SuppressWarnings("serial")
@@ -18,7 +19,11 @@ public class SpellCheckGui extends JFrame {
 	public SpellCheckGui() {
 		
 		//setting JFrame Details
+		super("SpellCheck");
+		
 		createView();
+		
+		setIconImage(Toolkit.getDefaultToolkit().getImage("octopus.png"));
 		
 		setSize(400,800);
 		
@@ -54,12 +59,65 @@ public class SpellCheckGui extends JFrame {
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		scrollPane.setPreferredSize(new Dimension(400, 200));
 		
+		//Setting JMenuBar Details + actionListeners for MenuItems--> Open/Save files
+				JMenuBar menu = new JMenuBar();
+				setJMenuBar(menu);
+				menu.setOpaque(true);
+				
+				JMenu menuFile = new JMenu("File");
+				
+				menu.add(menuFile);
+				
+				JMenuItem open = new JMenuItem("Open File");
+				menuFile.add(open);
+				
+				JFileChooser fc = new JFileChooser();
+				
+				open.addActionListener(ev -> {
+					 int returnVal = fc.showOpenDialog(panel);
+				      if (returnVal == JFileChooser.APPROVE_OPTION) {
+				        File file = fc.getSelectedFile();
+				        try {
+				          BufferedReader input = new BufferedReader(new InputStreamReader(
+				              new FileInputStream(file)));
+				          textArea.read(input, "Reading File...");
+				        } catch (Exception e) {
+				          e.printStackTrace();
+				        }
+				      } else {
+				        System.out.println("Operation Cancelled...");
+				      }
+				});
+				
+				JMenuItem save = new JMenuItem("Save File");
+				menuFile.add(save);
+				
+				save.addActionListener(ev -> {
+					int returnVal = fc.showOpenDialog(panel);
+				      if (returnVal == JFileChooser.APPROVE_OPTION) {
+				          String area = textArea.getText();
+				    	  File file = fc.getSelectedFile();
+				        try {
+				           FileWriter fw = new FileWriter(file.getPath());
+				           fw.write(area);
+				           fw.flush();
+				           fw.close();
+				           
+				        } catch (Exception e) {
+				          e.printStackTrace();
+				        }
+				      } else {
+				        System.out.println("Operation Cancelled...");
+				      }
+				});
+		
 		
 		//Setting JButtons and respective ActionListeners
 		JButton readButton = new JButton("OPEN FILE");
+		readButton.putClientProperty("Quaqua.Button.style", "bevel");
+        readButton.setFont(readButton.getFont().deriveFont(Font.BOLD));
 		readButton.setToolTipText("Click to open a text file into the text area for spell check.");
 		
-		JFileChooser fc = new JFileChooser();
 		readButton.addActionListener(ev -> {
 		      int returnVal = fc.showOpenDialog(panel);
 		      if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -77,6 +135,8 @@ public class SpellCheckGui extends JFrame {
 		    });
 		
 		JButton spellButton = new JButton("SPELL CHECK");
+		spellButton.putClientProperty("Quaqua.Button.style", "bevel");
+        spellButton.setFont(readButton.getFont().deriveFont(Font.BOLD));
 		spellButton.setToolTipText("Click to analyze the text for errors in spelling.");
 		
 		spellButton.addActionListener(ev -> {
@@ -85,24 +145,36 @@ public class SpellCheckGui extends JFrame {
 		
 		//Create JCheckBox to perform real-time spellcheck while selected
 		JCheckBox rtBox = new JCheckBox("Real-Time SpellCheck");
-		rtBox.addItemListener(ev -> {
-			textArea.getDocument().addDocumentListener(new DocumentListener() {
-
-	public void changedUpdate(DocumentEvent arg0) {
-		if (rtBox.isSelected()) sc.checker(textArea);
-	}
-	
-	public void insertUpdate(DocumentEvent arg0) {
-		if (rtBox.isSelected()) sc.checker(textArea);
-	}
-	
-	public void removeUpdate(DocumentEvent arg0) {
-		if (rtBox.isSelected()) sc.checker(textArea);
-	}
-});
-		});
-		  
+		rtBox.setFont(rtBox.getFont().deriveFont(Font.BOLD));
+		rtBox.setToolTipText("Press to enable real-time spell check.");
 		
+		//Listens to textArea for any change so that spellcheck can register textArea
+		DocumentListener change = new DocumentListener() {
+			
+			public void changedUpdate(DocumentEvent arg0) {
+			    sc.checker(textArea);
+			}
+			
+			public void insertUpdate(DocumentEvent arg0) {
+			    sc.checker(textArea);
+			}
+			
+			public void removeUpdate(DocumentEvent arg0) {
+				sc.checker(textArea);
+			}
+		};
+		
+		//Adds itemlistener so when checkbox is checked/unchecked will turn 
+		//real time spellcheck on and off.
+		rtBox.addItemListener(ev -> {
+			if(rtBox.isSelected()) {
+			textArea.getDocument().addDocumentListener(change);
+			} else {
+				textArea.getDocument().removeDocumentListener(change); 
+				SpellChecker.unregister(textArea);
+			}
+		});
+	
 		//Setting SpellCheckerOptions details to add to PopupMenu
 		SpellCheckerOptions sco = new SpellCheckerOptions();
 		sco.setCaseSensitive(false);

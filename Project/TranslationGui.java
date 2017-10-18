@@ -1,6 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,8 +28,11 @@ public class TranslationGui extends JFrame {
 public TranslationGui() {
 		
 	//Setting details of JFrame
+		super("Translator");
 	
 		createView();
+		
+		setIconImage(Toolkit.getDefaultToolkit().getImage("octopus.png"));
 		
 		setSize(400,800);		
 		
@@ -129,6 +134,8 @@ public TranslationGui() {
 		 */
 		
 		JButton translateButton = new JButton("TRANSLATE");
+		translateButton.putClientProperty("Quaqua.Button.style", "bevel");
+        translateButton.setFont(translateButton.getFont().deriveFont(Font.BOLD));
 		translateButton.setToolTipText("Click to convert the language for the current text to the desired language.");
 	
 		//Uses input from the JComboBoxs and the text area to send to the translation method.

@@ -9,7 +9,7 @@ import com.sun.speech.freetts.audio.AudioPlayer;
 import com.sun.speech.freetts.audio.SingleFileAudioPlayer;
 import javax.sound.sampled.AudioFileFormat.Type;
 
-//will need libraries/pom.xml file 
+//class that converts text/txt.files to text-to-speech or .wav
 
 public class TTSConvert {
 
