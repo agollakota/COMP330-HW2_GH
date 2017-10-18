@@ -27,6 +27,7 @@ public class Gui extends JFrame {
      */
 
     public Gui() {
+
         super("CAZA");
         
         createView();
@@ -44,7 +45,10 @@ public class Gui extends JFrame {
     }
 
 	public void createView() {
-        
+        Calendar newCalendar = new Calendar();
+        l1 = new JLabel(newCalendar.checkEventToday());
+        l1.setForeground(Color.white);
+        add(l1);
         JLabel background = new JLabel(new ImageIcon("giphy.gif"));
         background.setLayout(new BorderLayout());
         

@@ -1,10 +1,4 @@
-import java.io.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
-import java.util.Scanner;
-import java.time.LocalDateTime;
-
+/*
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -16,30 +10,52 @@ public class Calendar {
 
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
-    public static void main(String[] args) throws IOException {
-        Calendar newCalendar = new Calendar();
-        newCalendar.askEventDetails();
-        newCalendar.getTodaysDate();
-        newCalendar.checkEvent();
-        try {
-            newCalendar.readCalendarFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static void start() throws IOException {
 
+        Calendar newCalendar = new Calendar();
+        System.out.println( newCalendar.checkEventToday());
+        int choice=0;
+        Scanner keyboard = new Scanner(System.in);
+
+        do {
+            System.out.println("Would you like to 1: Add an Event? 2: Find an Event by Name 3: Find an event by date? 4: Read your calendar? Enter 0 to Exit");
+            choice = keyboard.nextInt();
+            switch (choice) {
+                case 1:
+                    newCalendar.askEventDetails();
+                    break;
+                case 2:
+                    newCalendar.getTodaysDate();
+                    break;
+                case 3:
+                    newCalendar.checkEvent();
+                    break;
+                case 4:
+                    try {
+                        newCalendar.readCalendarFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+
+            }
+
+        }while(choice!=0);
     }
 
     public void askEventDetails(){
         String eventName ="";
-        int date=0;
+        String date="";
         String time="";
+
         Scanner keyboard = new Scanner(System.in);
 
         System.out.println("What is the name of the event you would like to add?");
-        eventName=keyboard.nextLine();
 
+        eventName=keyboard.nextLine();
         System.out.println("What is date of the event? Put in the form MMDDYYYY");
-        date=keyboard.nextInt();
+        date=keyboard.nextLine();
 
         System.out.println("What is the time of the event?");
         time=keyboard.nextLine();
@@ -48,13 +64,13 @@ public class Calendar {
         addEvent(eventName, date, time);
     }
 
-    public void addEvent(String event, int dates, String times){
+    public void addEvent(String event, String dates, String times){
 
         try
         {
             String filename= "calendarEvents.txt";
             FileWriter fw = new FileWriter(filename,true); //the true will append the new data
-            fw.write("\n"+event+", "+dates+", "+ times);//appends the string to the file
+            fw.write("\n"+event+" , "+dates+" , "+ times);//appends the string to the file
             fw.close();
         }
         catch(IOException ioe)
@@ -67,7 +83,7 @@ public class Calendar {
     public void checkEvent() throws FileNotFoundException {
         Scanner keyboard = new Scanner(System.in);
         String nameOfEvent="";
-        int dateOfEvent=0;
+        String dateOfEvent="";
         String choice="";
         do {
             System.out.println("Would you like to check a date or check a name?");
@@ -75,7 +91,7 @@ public class Calendar {
 
             if(choice.equals("date")){
                 System.out.println("What date would you like to check in the form MMDDYYYY?");
-                dateOfEvent=keyboard.nextInt();
+                dateOfEvent=keyboard.nextLine();
                 checkDateEvent(dateOfEvent);
 
 
@@ -120,11 +136,11 @@ public class Calendar {
 
     }
 
-    public void checkDateEvent(int searchDate){
+    public void checkDateEvent(String searchDate){
         StringBuilder sb = new StringBuilder();
         sb.append("");
         sb.append(searchDate);
-        String searchStringDate = sb.toString();
+        String searchStringDate     = sb.toString();
         File file =new File("calendarEvents.txt");
         Scanner in = null;
         try {
@@ -161,12 +177,124 @@ public class Calendar {
 //Close the input stream
         br.close();
     }
-    public void getTodaysDate(){
+    public LocalDate getTodaysDate() throws IOException{
         LocalDate localDate = LocalDate.now();
         //  System.out.println(dtf.format());
+        return localDate;
+    }
+    public String checkEventToday() throws IOException {
+        String todayEvent = "No Events Today";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMddYYYY");
+        String formattedString= getTodaysDate().format(formatter);
+        String strLine="";
+        System.out.println(formattedString);
+        FileInputStream fstream = new FileInputStream("calendarEvents.txt");
+        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+
+
+        while ((strLine = br.readLine()) != null)   {
+            // Print the content on the console
+            if((strLine.contains(formattedString))){
+                todayEvent=strLine;
+                todayEvent = todayEvent.substring(0,todayEvent.indexOf(","));
+                todayEvent = "You have an event today: "+todayEvent;
+            }
+        }
+
+//Close the input stream
+        br.close();
+        return todayEvent;
+
+
+
 
     }
 
 
 
+}*/
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+class Calendar extends JFrame
+{
+    JPanel jp = new JPanel();
+    JLabel jl = new JLabel();
+    JLabel j2 = new JLabel();
+    JLabel j3 = new JLabel();
+    JTextField eventName= new JTextField(30);
+
+    JTextField eventDate= new JTextField(30);
+    JTextField eventTime= new JTextField(30);
+    JButton addButton= new JButton("Add Event");
+
+    String inputEvent="";
+    String inputDate="";
+    String inputTime="";
+
+    public Calendar()
+    {
+        setTitle("Tutorial");
+        setVisible(true);
+        setSize(400, 200);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        jp.add(eventName);
+        jp.add(eventTime);
+        jp.add(eventDate);
+
+        eventName.addActionListener(e -> {
+            String inputEvent = eventName.getText();
+            jl.setText(inputEvent);
+        });
+        eventTime.addActionListener(e -> {
+            String  inputTime = eventTime.getText();
+            j2.setText(inputTime);
+        });
+        eventDate.addActionListener(e -> {
+            String inputDate = eventDate.getText();
+            j3.setText(inputDate);
+        });
+        jp.add(addButton);
+
+
+        addButton.addActionListener(e -> {
+            String inputEvent= jl.getText();
+            String inputDate=j3.getText();
+            String inputTime=j2.getText();
+
+            try
+            {
+                String filename= "calendarEvents.txt";
+                FileWriter fw = new FileWriter(filename,true); //the true will append the new data
+                fw.write("\n"+inputEvent+" , "+inputDate+" , "+ inputTime);//appends the string to the file
+                fw.close();
+            }
+            catch(IOException ioe)
+            {
+                System.err.println("IOException: " + ioe.getMessage());
+            }
+
+
+
+        });
+
+        jp.add(jl);
+        add(jp);
+
+    }
+
+
+    public static void main(String[] args)
+    {
+        Calendar t = new Calendar();
+    }
 }
