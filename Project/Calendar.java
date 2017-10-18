@@ -1,300 +1,166 @@
-/*
-import java.io.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
-import java.util.Scanner;
-import java.time.LocalDateTime;
-
-public class Calendar {
-
-    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-
-    public static void start() throws IOException {
-
-        Calendar newCalendar = new Calendar();
-        System.out.println( newCalendar.checkEventToday());
-        int choice=0;
-        Scanner keyboard = new Scanner(System.in);
-
-        do {
-            System.out.println("Would you like to 1: Add an Event? 2: Find an Event by Name 3: Find an event by date? 4: Read your calendar? Enter 0 to Exit");
-            choice = keyboard.nextInt();
-            switch (choice) {
-                case 1:
-                    newCalendar.askEventDetails();
-                    break;
-                case 2:
-                    newCalendar.getTodaysDate();
-                    break;
-                case 3:
-                    newCalendar.checkEvent();
-                    break;
-                case 4:
-                    try {
-                        newCalendar.readCalendarFile();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-
-
-            }
-
-        }while(choice!=0);
-    }
-
-    public void askEventDetails(){
-        String eventName ="";
-        String date="";
-        String time="";
-
-        Scanner keyboard = new Scanner(System.in);
-
-        System.out.println("What is the name of the event you would like to add?");
-
-        eventName=keyboard.nextLine();
-        System.out.println("What is date of the event? Put in the form MMDDYYYY");
-        date=keyboard.nextLine();
-
-        System.out.println("What is the time of the event?");
-        time=keyboard.nextLine();
-        time=keyboard.nextLine();
-
-        addEvent(eventName, date, time);
-    }
-
-    public void addEvent(String event, String dates, String times){
-
-        try
-        {
-            String filename= "calendarEvents.txt";
-            FileWriter fw = new FileWriter(filename,true); //the true will append the new data
-            fw.write("\n"+event+" , "+dates+" , "+ times);//appends the string to the file
-            fw.close();
-        }
-        catch(IOException ioe)
-        {
-            System.err.println("IOException: " + ioe.getMessage());
-        }
-
-
-    }
-    public void checkEvent() throws FileNotFoundException {
-        Scanner keyboard = new Scanner(System.in);
-        String nameOfEvent="";
-        String dateOfEvent="";
-        String choice="";
-        do {
-            System.out.println("Would you like to check a date or check a name?");
-            choice = keyboard.nextLine();
-
-            if(choice.equals("date")){
-                System.out.println("What date would you like to check in the form MMDDYYYY?");
-                dateOfEvent=keyboard.nextLine();
-                checkDateEvent(dateOfEvent);
-
-
-            }
-            else if(choice.equals("name")){
-
-                System.out.println("What is the name of the event?");
-                nameOfEvent=keyboard.nextLine();
-                checkNameEvent(nameOfEvent);
-            }
-            else{
-                choice="";
-                System.out.println("Please type 'name' or 'date'");
-
-            }
-
-
-        }while(choice.equals(""));
-
-
-
-
-
-
-    }
-
-    public void checkNameEvent(String searchName) throws FileNotFoundException {
-        File file =new File("calendarEvents.txt");
-        Scanner in = null;
-        try {
-            in = new Scanner(file);
-            while(in.hasNext())
-            {
-                String line=in.nextLine();
-                if(line.contains(searchName))
-                    System.out.println(line);
-            }
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-    }
-
-    public void checkDateEvent(String searchDate){
-        StringBuilder sb = new StringBuilder();
-        sb.append("");
-        sb.append(searchDate);
-        String searchStringDate     = sb.toString();
-        File file =new File("calendarEvents.txt");
-        Scanner in = null;
-        try {
-            in = new Scanner(file);
-            while(in.hasNext())
-            {
-                String line=in.nextLine();
-                if(line.contains(searchStringDate))
-                    System.out.println(line);
-            }
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-    }
-
-
-    public void readCalendarFile() throws IOException {
-        // Open the file
-        System.out.println("Printing out your calendar.....");
-
-        FileInputStream fstream = new FileInputStream("calendarEvents.txt");
-        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-
-        String strLine;
-
-//Read File Line By Line
-        while ((strLine = br.readLine()) != null)   {
-            // Print the content on the console
-            System.out.println (strLine);
-        }
-
-//Close the input stream
-        br.close();
-    }
-    public LocalDate getTodaysDate() throws IOException{
-        LocalDate localDate = LocalDate.now();
-        //  System.out.println(dtf.format());
-        return localDate;
-    }
-    public String checkEventToday() throws IOException {
-        String todayEvent = "No Events Today";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMddYYYY");
-        String formattedString= getTodaysDate().format(formatter);
-        String strLine="";
-        System.out.println(formattedString);
-        FileInputStream fstream = new FileInputStream("calendarEvents.txt");
-        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-
-
-        while ((strLine = br.readLine()) != null)   {
-            // Print the content on the console
-            if((strLine.contains(formattedString))){
-                todayEvent=strLine;
-                todayEvent = todayEvent.substring(0,todayEvent.indexOf(","));
-                todayEvent = "You have an event today: "+todayEvent;
-            }
-        }
-
-//Close the input stream
-        br.close();
-        return todayEvent;
-
-
-
-
-    }
-
-
-
-}*/
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
-import java.io.IOException;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Arrays;
 
+import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import java.awt.GridBagLayout;
 
-class Calendar extends JFrame
-{
-    JPanel jp = new JPanel();
-    JLabel jl = new JLabel();
-    JLabel j2 = new JLabel();
-    JLabel j3 = new JLabel();
-    JTextField eventName= new JTextField(30);
+import com.inet.jortho.SpellChecker;
+import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
 
-    JTextField eventDate= new JTextField(30);
-    JTextField eventTime= new JTextField(30);
-    JButton addButton= new JButton("Add Event");
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
-    String inputEvent="";
-    String inputDate="";
-    String inputTime="";
+@SuppressWarnings("serial")
+public class Calendar extends JFrame {
 
-    public Calendar()
-    {
-        setTitle("Tutorial");
-        setVisible(true);
-        setSize(400, 200);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+	private File dir;
+	private String dateMemo;
 
-        jp.add(eventName);
-        jp.add(eventTime);
-        jp.add(eventDate);
+	public Calendar() {
 
-        eventName.addActionListener(e -> {
-            String inputEvent = eventName.getText();
-            jl.setText(inputEvent);
-        });
-        eventTime.addActionListener(e -> {
-            String  inputTime = eventTime.getText();
-            j2.setText(inputTime);
-        });
-        eventDate.addActionListener(e -> {
-            String inputDate = eventDate.getText();
-            j3.setText(inputDate);
-        });
-        jp.add(addButton);
+		super("Calendar");
 
+		initGUI();
 
-        addButton.addActionListener(e -> {
-            String inputEvent= jl.getText();
-            String inputDate=j3.getText();
-            String inputTime=j2.getText();
+		setIconImage(Toolkit.getDefaultToolkit().getImage("octopus.png"));
 
-            try
-            {
-                String filename= "calendarEvents.txt";
-                FileWriter fw = new FileWriter(filename,true); //the true will append the new data
-                fw.write("\n"+inputEvent+" , "+inputDate+" , "+ inputTime);//appends the string to the file
-                fw.close();
-            }
-            catch(IOException ioe)
-            {
-                System.err.println("IOException: " + ioe.getMessage());
-            }
+		pack();
 
+		setResizable(false);
 
+		setLocationRelativeTo(null);
+	}
 
-        });
+	private void initGUI() {
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[] { 0, 0, 0, 0, 4 };
+		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 4 };
+		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		getContentPane().setLayout(gridBagLayout);
 
-        jp.add(jl);
-        add(jp);
+		JCalendar calendar = new JCalendar();
+		GridBagConstraints gbc_calendar = new GridBagConstraints();
+		gbc_calendar.gridheight = 4;
+		gbc_calendar.insets = new Insets(0, 0, 0, 5);
+		gbc_calendar.fill = GridBagConstraints.BOTH;
+		gbc_calendar.gridx = 0;
+		gbc_calendar.gridy = 0;
+		getContentPane().add(calendar, gbc_calendar);
 
-    }
+		JLabel lblNewLabel = new JLabel("Select a Date");
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.gridwidth = 3;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 1;
+		gbc_lblNewLabel.gridy = 0;
+		getContentPane().add(lblNewLabel, gbc_lblNewLabel);
 
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridheight = 2;
+		gbc_scrollPane.gridwidth = 3;
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 1;
+		gbc_scrollPane.gridy = 2;
+		getContentPane().add(scrollPane, gbc_scrollPane);
 
-    public static void main(String[] args)
-    {
-        Calendar t = new Calendar();
-    }
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(true);
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+		scrollPane.setViewportView(textArea);
+
+		calendar.addPropertyChangeListener(new PropertyChangeListener() {
+			@Override
+			public void propertyChange(PropertyChangeEvent e) {
+				textArea.setText("");
+				String jcalendar = calendar.getDate().toString();
+				lblNewLabel.setText(jcalendar);
+				char[] holder = jcalendar.toCharArray();
+				char[] accept = Arrays.copyOfRange(holder, 0, 10);
+				dateMemo = String.valueOf(accept);
+				dateMemo = String.valueOf(accept).replaceAll("\\s+", "");
+				try {
+					File fil = new File(dir.getPath().toString() + "/" + dateMemo + ".txt");
+					FileInputStream fis = new FileInputStream(fil);
+					byte[] data = new byte[fis.available()];
+					fis.read(data);
+					String text1 = new String(data);
+					textArea.setText(text1);
+				} catch (Exception f) {
+					f.printStackTrace();
+				}
+			}
+		});
+
+		JButton btnNewButton = new JButton("SAVE");
+		btnNewButton.addActionListener(ev -> {
+			String area = textArea.getText();
+			try {
+				File space = new File(dir.getPath().toString() + "/" + dateMemo + ".txt");
+				FileWriter write = new FileWriter(space);
+				write.write(area);
+				write.flush();
+				write.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Please select your directory before saving any text files.",
+						"Error", JOptionPane.CLOSED_OPTION, null);
+			}
+		});
+
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.insets = new Insets(0, 28, 5, 5);
+		gbc_btnNewButton.gridx = 1;
+		gbc_btnNewButton.gridy = 1;
+		getContentPane().add(btnNewButton, gbc_btnNewButton);
+
+		JButton btnNewButton_1 = new JButton("DIRECTORY");
+		btnNewButton_1.addActionListener(ev -> {
+			JFileChooser chooser = new JFileChooser();
+			chooser.setCurrentDirectory(new java.io.File("."));
+			chooser.setDialogTitle("choosertitle");
+			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+			chooser.setAcceptAllFileFilterUsed(false);
+			if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+				dir = chooser.getSelectedFile();
+			}
+			try {
+				File fil = new File(dir.getPath().toString() + "/" + dateMemo + ".txt");
+				FileInputStream fis = new FileInputStream(fil);
+				byte[] data = new byte[fis.available()];
+				fis.read(data);
+				String text1 = new String(data);
+				textArea.setText(text1);
+			} catch (Exception f) {
+				f.printStackTrace();
+			}
+		});
+		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_1.gridx = 2;
+		gbc_btnNewButton_1.gridy = 1;
+		getContentPane().add(btnNewButton_1, gbc_btnNewButton_1);
+
+	}
+
 }
