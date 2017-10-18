@@ -96,7 +96,8 @@ public class Gui extends JFrame {
         box.add(spellingButton);
         box.add(translatorButton);
         box.add(calendarButton);
-       
+
+
         background.add(buttonPanel, BorderLayout.SOUTH);
         buttonPanel.add(box);
         buttonPanel.setOpaque(false);
