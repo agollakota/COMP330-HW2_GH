@@ -9,13 +9,14 @@ import java.io.FileInputStream;
 public class NoteReader {
 
 	// retrieves all notes that contain the passed string parameter
-	public boolean notesByEntry(String dir, String keyword) {
+	public String notesByEntry(File dir, String keyword) {
 
-		File path = new File(dir);
+		File path = dir;
+		String listString = "List: ";
+		ArrayList<String> list = new ArrayList<String>();
 
 		if (path.exists()) {
 			Pattern p = Pattern.compile(keyword);
-			ArrayList<String> list = new ArrayList<String>();
 
 			for (File f : path.listFiles()) {
 				if (!f.isFile())
@@ -33,25 +34,27 @@ public class NoteReader {
 				} catch (Exception e) {
 					System.out.println("\t Error processing file : " + f.getName());
 				}
-
 			}
-			System.out.println("\t List : " + list);
 		} else {
 			System.out.println("Path does not exist.");
-
 		}
-		return true;
+		for (String s : list)
+		{
+		    listString += "[" + s + "]";
+		}
+		return (listString);
 	}
 
 	// organizes notes by number of occurrences in the text file of
 	// the passed string parameter from greatest to least
-	public boolean sortByEntry(String dir, String keyword) {
+	public String sortByEntry(File dir, String keyword) {
 
-		File path = new File(dir);
-
+		File path = dir;
+		String listString = "List: ";
+		ArrayList<String> list = new ArrayList<String>();
+		
 		if (path.exists()) {
 			Pattern p = Pattern.compile(keyword);
-			ArrayList<String> list = new ArrayList<String>();
 			ArrayList<String> c = new ArrayList<String>();
 
 			for (File f : path.listFiles()) {
@@ -89,14 +92,19 @@ public class NoteReader {
 			System.out.println("Path does not exist.");
 
 		}
-		return true;
+		for (String s : list)
+		{
+		    listString +="[" + s + "]";
+		}
+		return listString;
 	}
 
 	// retrieves and organizes all notes containing mentions
 	// (words preceded by '@')from greatest to least
-	public boolean containsMention(String dir) {
+	public String containsMention(File dir) {
 
-		File path = new File(dir);
+		File path = dir;
+		String listString = "List: ";
 
 		if (path.exists()) {
 			Pattern p = Pattern.compile("@");
@@ -132,19 +140,20 @@ public class NoteReader {
 			Collections.reverse(list);
 
 			for (String ele : list) {
-				System.out.println(ele);
+				listString += "[" + ele + "]";
 			}
 		} else {
 			System.out.println("Path does not exist.");
 
 		}
-		return true;
+		return listString;
 	}
 
 	// retrieves a list of all existing keywords (words preceded by '#')
-	public boolean getKeywords(String dir) {
+	public String getKeywords(File dir) {
 
-		File path = new File(dir);
+		File path = dir;
+		String listString = "List: ";
 		Set<String> set = new HashSet<String>();
 
 		if (path.exists()) {
@@ -170,24 +179,25 @@ public class NoteReader {
 				}
 			}
 			for (String ele : set) {
-				System.out.println(ele);
+				listString += "[" + ele + "]";
 			}
 		} else {
 			System.out.println("Path does not exist.");
 		}
-		return true;
+		return listString;
 	}
 
 	// sorts each note file by the total weight, defined by how many
 	// mentions and keywords are present in the file from greatest to least
-	public boolean topSort(String dir) {
+	public String topSort(File dir) {
 
-		File path = new File(dir);
-
+		File path = dir;
+		String listString = "List: ";
+		ArrayList<String> list = new ArrayList<String>();
+		
 		if (path.exists()) {
 			Pattern p = Pattern.compile("@");
 			Pattern b = Pattern.compile("#");
-			ArrayList<String> list = new ArrayList<String>();
 			ArrayList<String> c = new ArrayList<String>();
 
 			for (File f : path.listFiles()) {
@@ -217,10 +227,15 @@ public class NoteReader {
 				list.add(temp);
 			}
 			Collections.sort(list);
+			Collections.reverse(list);
 			System.out.println("\t List : " + list);
 		} else {
 			System.out.println("Path does not exist.");
 		}
-		return true;
+		for (String s : list)
+		{
+		    listString += "[" + s + "]";
+		}
+		return listString;
 	}
 }
