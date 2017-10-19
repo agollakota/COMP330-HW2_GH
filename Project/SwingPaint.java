@@ -8,9 +8,16 @@ import javax.swing.JPanel;
 
 public class SwingPaint {
 // ADAPTED FROM http://www.ssaurel.com/blog/learn-how-to-make-a-swing-painting-and-drawing-application/
+
+
+   //creating buttons for colors
     JButton clearBtn, blackBtn, blueBtn, greenBtn, redBtn, yellowBtn, whiteBtn;
+
+  //create drawing area
    Paint drawArea;
 
+
+   //adding menu but not working rn
     private MenuBar menuBar = new MenuBar(); // first, create a MenuBar item
     private Menu file = new Menu(); // our File menu
     private MenuItem openFile = new MenuItem();
@@ -25,6 +32,8 @@ public class SwingPaint {
 
     ActionListener actionListener = new ActionListener() {
 
+
+        //used to choose what to do when the button is pushed
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == clearBtn) {
                 drawArea.clear();
@@ -70,7 +79,7 @@ public class SwingPaint {
 
 
         JPanel controls = new JPanel();
-
+//labels for the button
         clearBtn = new JButton("Clear");
         clearBtn.addActionListener(actionListener);
         blackBtn = new JButton("Black");
@@ -86,7 +95,7 @@ public class SwingPaint {
 
        whiteBtn= new JButton("Eraser");
         whiteBtn.addActionListener(actionListener);
-        // add to panel
+        // add to paint the canvas
         controls.add(greenBtn);
         controls.add(blueBtn);
         controls.add(blackBtn);
