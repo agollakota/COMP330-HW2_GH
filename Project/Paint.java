@@ -18,7 +18,7 @@ public class Paint extends JComponent {
 
     private Graphics2D g2;
     private int currentX, currentY, oldX, oldY;
-
+//this basically handles all the stuff handling when the user
     public Paint() {
         setDoubleBuffered(false);
         addMouseListener(new MouseAdapter() {
@@ -47,7 +47,7 @@ public class Paint extends JComponent {
             }
         });
     }
-
+//creating the image by the paint
     protected void paintComponent(Graphics g) {
         if (image == null) {
 
@@ -61,7 +61,7 @@ public class Paint extends JComponent {
 
         g.drawImage(image, 0, 0, null);
     }
-
+//function for clearing the canvas
     public void clear() {
         g2.setPaint(Color.white);
 
