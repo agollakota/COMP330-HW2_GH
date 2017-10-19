@@ -20,7 +20,6 @@ public class main{
    //going to just call GUI.java which encorporates all of the different GUI's for the project
   
     @Test
-    public void testingtheCalendar() {
        Calendar c = new Calendar();    //
         c.start();
 
@@ -28,10 +27,10 @@ public class main{
         //assertEquals("10 x 0 must be 0", 0, tester.multiply(10, 0));
         //assertEquals("0 x 10 must be 0", 0, tester.multiply(0, 10));
         //assertEquals("0 x 0 must be 0", 0, tester.multiply(0, 0));
-    }
+    
 
   @Test
-    public void testingtheDA() {
+
        DrawArea d = new DrawArea();
         d.start();
 
@@ -40,7 +39,7 @@ public class main{
         //assertEquals("10 x 0 must be 0", 0, tester.multiply(10, 0));
         //assertEquals("0 x 10 must be 0", 0, tester.multiply(0, 10));
         //assertEquals("0 x 0 must be 0", 0, tester.multiply(0, 0));
-    }
+    
 
 
  
