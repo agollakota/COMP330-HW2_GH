@@ -166,7 +166,6 @@ public class Calendar extends JFrame {
 }
 
 /*
-
 import java.awt.event.ActionEvent;
 		import java.awt.event.ActionListener;
 		import java.io.File;
@@ -183,29 +182,35 @@ import java.awt.event.ActionEvent;
 public class Calendar extends JFrame
 {
 	JPanel jp = new JPanel();
-	JLabel jl = new JLabel();
+	JLabel jl = new JLabel("Event");
 	JTextField jt = new JTextField(30);
 	JButton jb = new JButton("Add Event");
 
 
 
-	JLabel jlDate= new JLabel();
+	JLabel jlDate= new JLabel("Event Date. Enter in Form MMDDYYYY");
 	JTextField jtDate = new JTextField(30);
 
 
 
-	JLabel jlTime = new JLabel();
+	JLabel jlTime = new JLabel("Event Time");
 	JTextField jtTime = new JTextField(30);
 	public Calendar ()
 	{
-		setTitle("Tutorial");
+		setTitle("Calendar Caza Pro");
 		setVisible(true);
-		setSize(400, 200);
+		setSize(300, 400);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-
+		jp.add(jl);
 		jp.add(jt);
+
+		jp.add(jlDate);
 		jp.add(jtDate);
+
+		jp.add(jlTime);
 		jp.add(jtTime);
+
+
 
 
 		jt.addActionListener(new ActionListener()
@@ -267,7 +272,7 @@ public class Calendar extends JFrame
 			}
 		});
 
-		jp.add(jl);
+
 		add(jp);
 
 	}

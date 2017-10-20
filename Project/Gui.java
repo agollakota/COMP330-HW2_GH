@@ -90,6 +90,7 @@ public class Gui extends JFrame {
         
         JPanel box = new JPanel(new GridLayout(3,2));
         
+<<<<<<< HEAD
         box.add(sortButton);                                        //All boxes for displaying buttons within GUI
         box.add(noteButton);                                        //
         box.add(TTSButton);                                         //
@@ -97,6 +98,16 @@ public class Gui extends JFrame {
         box.add(translatorButton);                                  //
         box.add(calendarButton);                                    //
        
+=======
+        box.add(sortButton);
+        box.add(noteButton);
+        box.add(TTSButton);
+        box.add(spellingButton);
+        box.add(translatorButton);
+        box.add(calendarButton);
+
+
+>>>>>>> ded27927f14f9e4977e10542360eba13c6cf49f4
         background.add(buttonPanel, BorderLayout.SOUTH);
         buttonPanel.add(box);
         buttonPanel.setOpaque(false);
