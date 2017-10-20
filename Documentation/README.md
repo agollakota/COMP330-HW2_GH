@@ -1,21 +1,42 @@
-#CAZA PRO(TM)
+#**CAZAPro(TM)**
+-----------------------
+CAZAPro is a note-taking tool that simplifies the lives of multitasking, busy individuals. 
 
-CAZA PRO is a note-taking system which simplifies the lives of multitasking, busy individuals.
+*Included Features : Paint, Translator, Text-to-Speech, Calendar, SpellCheck, CAZAPad*
 
-##Technologies
-* Tools
-    * [Free TTS] (https://freetts.sourceforge.io/)
-    * [Google Translate API] (https://cloud.google.com/translate/)
-    * [JOrtho Spell Checker] (https://www.inetsoftware.de/other-products/jortho)
 
-* Encoding
-    * [JAve] (http://www.sauronsoftware.it/projects/jave/)
 
-* Design 
-    * [JTattoo] (http://www.jtattoo.net/)
-    * [JCalendar] (http://www.java2s.com/Code/Jar/j/Downloadjcalendar14jar.htm)
+##**Technologies**
+--------------------------------
+###Tools
 
-* Testing
-    * [JUnit Testing] (http://junit.org/)
-    * [Groovy Testing] (http://groovy-lang.org/testing.html)
+[Free TTS](https://freetts.sourceforge.io/)
+[Google Translate API](https://cloud.google.com/translate/)
+[JOrtho Spell Checker](http://jortho.sourceforge.net/)
 
+###Design
+
+[JTattoo](http://www.jtattoo.net/)
+[JCalendar](https://toedter.com/jcalendar/)
+
+###Testing
+
+[JUnit Testing](http://junit.org/)
+[Groovy Testing](http://groovy-lang.org/testing.html) 
+
+###Encoding
+
+[Jave](http://www.sauronsoftware.it/projects/jave/)
+
+##**Addendum**
+--------------------------------
+###Adapted Code
+[Google Translate API workaround](http://archana-testing.blogspot.com/2016/02/calling-google-translation-api-in-java.html)
+[Paint GUI Example](http://forum.codecall.net/topic/58137-java-mini-paint-program/)
+
+###Support
+[Google Translate API ISO Code List](http://archana-testing.blogspot.com/2016/02/calling-google-translation-api-in-java.html)
+
+###Most Annoying Bug Award
+
+[File.delete() issues](https://stackoverflow.com/questions/991489/file-delete-returns-false-even-though-file-exists-file-canread-file-canw/21522963#21522963) - Time Expenditure: 4.5 hours  :(
