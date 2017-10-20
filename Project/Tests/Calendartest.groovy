@@ -1,40 +1,24 @@
-class PaintTest extends GroovyTestCase {
-    void testPaintComponent() {
-        PaintTest paintTest = new PaintTest();
-        paintTest.testClear();
-        paintTest.testBlack();
-        assertEquals(paintTest.testBlue(),"Blue");
-        assertEquals(paintTest.testGreen(),"Green");
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+class CalenderTest extends GroovyTestCase {
+    void testCalendarcomponent() {
+        CalenderTest CalenderTest = new CalenderTest();
+        CalenderTest.testClear();
+        CalenderTest.testBlack();
+        assertEquals(CalenderTest.propertyChange(),"Propertychangetest");
+      
 
     }
 
-    void testClear() {
-        System.out.println("cleared");
-    }
+   //initGUI is going to be tested in main??
+   
+   
+   
+   @Test
+			public void propertyChange() {
+			     System.out.println("testing propertychange");
+			}
+			
 
-    void testRed() {
-        System.out.println("Red");
-    }
-
-    void testBlack() {
-        System.out.println("Black");
-    }
-
-
-    void testYellow() {
-        System.out.println("Yellow");
-    }
-
-    void testGreen() {
-        System.out.println("Green");
-
-    }
-
-    void testBlue() {
-        System.out.println("Blue");
-    }
-
-    void testWhite() {
-        System.out.println("White");
-    }
 }

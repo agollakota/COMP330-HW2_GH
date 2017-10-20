@@ -34,6 +34,8 @@ public class DrawArea extends JComponent {
   public DrawArea() {
     setDoubleBuffered(false);
     addMouseListener(new MouseAdapter() {
+      
+      
       public void mousePressed(MouseEvent e) {
         // save coord x,y when mouse is pressed
         oldX = e.getX();
