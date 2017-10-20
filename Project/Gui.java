@@ -46,22 +46,22 @@ public class Gui extends JFrame {
 
 	public void createView() {
         Calendar newCalendar = new Calendar();
-        l1 = new JLabel(newCalendar.checkEventToday());
+        l1 = new JLabel(newCalendar.checkEventToday());             //checks if the user has any events that are occurring that day that they set beforehand
         l1.setForeground(Color.white);
         add(l1);
-        JLabel background = new JLabel(new ImageIcon("giphy.gif"));
+        JLabel background = new JLabel(new ImageIcon("giphy.gif")); //sets gif as foreground icon
         background.setLayout(new BorderLayout());
         
-        JButton sortButton = new JButton ("OPEN SORTER");
+        JButton sortButton = new JButton ("OPEN SORTER");           //button to open sorter *NEEDS FIX*
         
-        JButton noteButton = new JButton("OPEN NOTE PAD");
+        JButton noteButton = new JButton("OPEN NOTE PAD");          //button to open Note Pad for user
         
-        noteButton.addActionListener(ev -> {
+        noteButton.addActionListener(ev -> {            
         	NotePad app = new NotePad();
             app.setVisible(true);
-		});
+		});                                                         //runs NotePad class
         
-        JButton TTSButton = new JButton("OPEN TTS CONVERTER");
+        JButton TTSButton = new JButton("OPEN TTS CONVERTER");      //button to open Text-to-Speech Converter
         
         TTSButton.addActionListener(ev -> {
         	SwingUtilities.invokeLater(new Runnable() {
@@ -69,9 +69,9 @@ public class Gui extends JFrame {
     	        	new TTSGui().setVisible(true);
     	        }
     		});
-		});
+		});                                                         //runs Text-to-Speech class
         
-        JButton spellingButton = new JButton("OPEN SPELL CHECKER");
+        JButton spellingButton = new JButton("OPEN SPELL CHECKER"); //button to open Spell Checker
         
         spellingButton.addActionListener(ev -> {
         	SwingUtilities.invokeLater(new Runnable() {
@@ -79,29 +79,29 @@ public class Gui extends JFrame {
     	        	new SpellCheck().setVisible(true);
     	        }
     		});
-		});
+		});                                                         //runs Spell Checker class
         
-        JButton translatorButton = new JButton("OPEN TRANSLATOR");
+        JButton translatorButton = new JButton("OPEN TRANSLATOR");  //button to open Translator
         
-        JButton calendarButton = new JButton("OPEN CALENDAR");
+        JButton calendarButton = new JButton("OPEN CALENDAR");      //button to open Calendar
         getContentPane().add(background);
         
         JPanel buttonPanel = new JPanel();
         
         JPanel box = new JPanel(new GridLayout(3,2));
         
-        box.add(sortButton);
-        box.add(noteButton);
-        box.add(TTSButton);
-        box.add(spellingButton);
-        box.add(translatorButton);
-        box.add(calendarButton);
+        box.add(sortButton);                                        //All boxes for displaying buttons within GUI
+        box.add(noteButton);                                        //
+        box.add(TTSButton);                                         //
+        box.add(spellingButton);                                    //
+        box.add(translatorButton);                                  //
+        box.add(calendarButton);                                    //
        
         background.add(buttonPanel, BorderLayout.SOUTH);
         buttonPanel.add(box);
         buttonPanel.setOpaque(false);
-        box.setBackground(new Color(213,134,145,123));
-        buttonPanel.setBackground(new Color(213,134,145,123));
+        box.setBackground(new Color(213,134,145,123));              
+        buttonPanel.setBackground(new Color(213,134,145,123));      //Sets color to Cyprus Blue
    
         addWindowListener(new WindowAdapter() {
             @Override
@@ -109,7 +109,7 @@ public class Gui extends JFrame {
                 JOptionPane.showMessageDialog(null, "Have a great day!");
                 dispose();
             }
-        });
+        });                                                         //When user exits out of window, dialogue panel is shown
 
 		}
     }

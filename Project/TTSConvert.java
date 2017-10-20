@@ -9,13 +9,13 @@ import com.sun.speech.freetts.audio.AudioPlayer;
 import com.sun.speech.freetts.audio.SingleFileAudioPlayer;
 import javax.sound.sampled.AudioFileFormat.Type;
 
-//class that converts text/txt.files to text-to-speech or .wav
+//will need libraries/pom.xml file 
 
 public class TTSConvert {
 
 	private static final String voiceName = "kevin16";
 	private final Voice voice;
-	AudioPlayer audioPlayer = null;
+	AudioPlayer audioPlayer = null;												//Initializes variables 
 	
 	
 	public TTSConvert() {

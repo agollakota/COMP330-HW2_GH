@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  
 public class SwingPaint {
  
-  JButton clearBtn, blackBtn, blueBtn, greenBtn, redBtn, magentaBtn;
+  JButton clearBtn, blackBtn, blueBtn, greenBtn, redBtn, magentaBtn;            //Initializes buttons for various colors
   DrawArea drawArea;
   ActionListener actionListener = new ActionListener() {
  
@@ -33,7 +33,7 @@ public class SwingPaint {
         drawArea.magenta();
       }
     }
-  };
+  };                                                                            //Chooses color based off user selection
  
   public static void main(String[] args) {
     new SwingPaint().show();

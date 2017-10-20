@@ -1,63 +1,68 @@
-import java.awt.Font;
-import java.awt.Toolkit;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
+
+import com.inet.jortho.FileUserDictionary;
+import com.inet.jortho.PopupListener;
+import com.inet.jortho.SpellChecker;
+import com.inet.jortho.SpellCheckerOptions;
 
 @SuppressWarnings("serial")
 public class TTSGui extends JFrame {
 
 	public TTSGui() {
-
-		// Setting details of JFrame
-		super("TTSConverter");
-
+		
 		createView();
-
-		setIconImage(Toolkit.getDefaultToolkit().getImage("octopus.png"));
-
-		setSize(400, 800);
-
+		
+		setSize(400,800);
+		
 		pack();
-
+		
 		setLocationRelativeTo(null);
-
+		
 		setResizable(false);
-
-	}
+		
+	}																//Initializes size of GUI for Text-to-Speech
 
 	public void createView() {
-
-		// Setting details of JButtons
+		
 		JButton speakButton = new JButton("SPEAK");
-		speakButton.putClientProperty("Quaqua.Button.style", "bevel");
-		speakButton.setFont(speakButton.getFont().deriveFont(Font.BOLD));
 		speakButton.addActionListener(ev -> {
-			File file = new File("Sample.txt");
+        	File file = new File("Sample.txt");
 			TTSConvert tts = new TTSConvert();
-			tts.speak(file);
-		});
-
+        	tts.speak(file);
+		});															//Has computer "speak" text that user inputs
+		
 		JButton convertButton = new JButton("CONVERT");
-		convertButton.putClientProperty("Quaqua.Button.style", "bevel");
-		convertButton.setFont(convertButton.getFont().deriveFont(Font.BOLD));
 		convertButton.addActionListener(ev -> {
-			File file = new File("Sample.txt");
+        	File file = new File("Sample.txt");
 			TTSConvert tts = new TTSConvert();
-			tts.audio(file);
+        	tts.audio(file);										//Converts "spoken" text into an audio file for download
 		});
-
-		// creating JPanel and adding JButtons
+		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel);
-
-		Box box = Box.createHorizontalBox();
-
-		box.add(speakButton);
-		box.add(convertButton);
-
+		
+		Box box = Box.createHorizontalBox();						//Initializes ability to create boxes surrounding buttons
+		
+		box.add(speakButton);										//Creates box around the SPEAK button
+		box.add(convertButton);										//Creates box around the CONVERT button
+		
 		panel.add(box);
-	}
+	  }
 }
+
+

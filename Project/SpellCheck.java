@@ -4,8 +4,6 @@ import com.inet.jortho.PopupListener;
 import com.inet.jortho.SpellChecker;
 import com.inet.jortho.SpellCheckerOptions;
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,22 +16,90 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-//class that spellchecks text or text file and provides
-//suggestions for corrections
-
 @SuppressWarnings("serial")
 
 public class SpellCheck extends JFrame {
 	
-	//setting up JOrtho
 	public SpellCheck() {
+		
+		createView();
+		
+		setSize(400,800);
+		
+		pack();
+		
+		setLocationRelativeTo(null);
+		
+		setResizable(false);
+		
+	}																//Sets GUI size
+
+	public void createView() {
+		
+		
+		JFileChooser fc = new JFileChooser();
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(true);
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+		
+		textArea.setToolTipText("<html>Enter or open text into the text area and then click <br/> "
+				                + "on the 'Spell Check' button to find any possible errors in <br/> "
+				                + "spelling. Possible errors in spelling will be underlined and <br/> "
+				                + "when right clicked, will provide suggestions for correction.</html>");
+		
+																	//Above text provides the user with a brief tutorial of using the feature
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		scrollPane.setPreferredSize(new Dimension(400, 200));
+		
+		JButton readButton = new JButton("OPEN FILE");				//Allows users to open file
+		readButton.setToolTipText("Click to open a text file into the text area for spell check.");
+		
+		JButton spellButton = new JButton("SPELL CHECK");			//Reads the opened file or text to find errors
+		spellButton.setToolTipText("Click to analyze the text for errors in spelling.");
+		
+		JPanel panel = new JPanel();
 		
 		SpellChecker.setUserDictionaryProvider(new FileUserDictionary());      
 		SpellChecker.registerDictionaries(this.getClass().getResource("/dictionary"), "en");
+																	//Spell Checker uses an English Dictionary for checking
+		SpellCheckerOptions sco = new SpellCheckerOptions();
 		
-	}
-	//registering JOrtho to JComponent
-	public void checker(JTextArea textArea) {
-		SpellChecker.register(textArea);
-	}
+		sco.setCaseSensitive(false);
+		sco.setSuggestionsLimitMenu(10);
+		sco.setLanguageDisableVisible(false);
+		sco.setIgnoreWordsWithNumbers(true);
+		
+		JPopupMenu popup = SpellChecker.createCheckerPopup(sco);
+		textArea.addMouseListener(new PopupListener(popup));
+		
+		getContentPane().add(panel);
+		
+		spellButton.addActionListener(ev -> {
+			SpellChecker.register(textArea);
+		});
+	    
+		readButton.addActionListener(ev -> {
+	      int returnVal = fc.showOpenDialog(panel);
+	      if (returnVal == JFileChooser.APPROVE_OPTION) {
+	        File file = fc.getSelectedFile();
+	        try {
+	          BufferedReader input = new BufferedReader(new InputStreamReader(
+	              new FileInputStream(file)));
+	          textArea.read(input, "Reading File...");
+	        } catch (Exception e) {
+	          e.printStackTrace();
+	        }													//Gather selected file and reads it for spelling errors
+	      } else {
+	        System.out.println("Operation Cancelled...");
+	      }														//If the program is unsuccessful, print out message
+	    });
+
+		JPanel box = new JPanel(new GridLayout(2,0));
+		box.add(readButton);
+		box.add(spellButton);
+		
+	    panel.add(scrollPane, BorderLayout.CENTER);
+	    panel.add(box);
+	  }
 }

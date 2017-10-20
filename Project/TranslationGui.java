@@ -1,144 +1,82 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileWriter;
 import java.io.InputStreamReader;
 
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-@SuppressWarnings("serial")
+import com.inet.jortho.FileUserDictionary;
+import com.inet.jortho.PopupListener;
+import com.inet.jortho.SpellChecker;
+import com.inet.jortho.SpellCheckerOptions;
+
 public class TranslationGui extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+	
 public TranslationGui() {
 		
-	//Setting details of JFrame
-		super("Translator");
-	
 		createView();
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage("octopus.png"));
+		setSize(400,800);
 		
-		setSize(400,800);		
+		pack();
 		
-		pack();		
+		setLocationRelativeTo(null);
 		
-		setLocationRelativeTo(null);		
+		setResizable(false);
 		
-		setResizable(false);		
-		
-	}
+	}																			//Initializes GUI for user
 
 	public void createView() {
 		
-		//Array of supported languages for the Google Translator
-		//Look to documentation for list of ISO codes for supported languages
-		String languages[] = {"en","ru","es","fr","hi","de","el","ja"};		
+		String languages[] = {"en","ru","es","fr","hi","de","el","ja"};			//Array of languages available for translated from and to
 		
-		//Creating dropdown menus for language from and language to
-		JComboBox<String> startLanguage = new JComboBox<>(languages);
+		JComboBox<String> startLanguage = new JComboBox<>(languages);			//Creates dropdown menu for user to select start language
 		
 		startLanguage.setSelectedIndex(-1);
 		
-		JComboBox<String> endLanguage = new JComboBox<>(languages);
+		JComboBox<String> endLanguage = new JComboBox<>(languages);				//Creates dropdown menu for user to select end language
 		
 		endLanguage.setSelectedIndex(-1);
 		
-		//Setting details for JTextArea
+		JFileChooser fc = new JFileChooser();
 		JTextArea textArea = new JTextArea();
-		JScrollPane scrollPane = new JScrollPane(textArea);
-		scrollPane.setPreferredSize(new Dimension(400, 200));
 		textArea.setEditable(true);
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
+		
 		textArea.setToolTipText("<html>Enter or open text into the text area and then click <br/> "
-				                + "on the 'Translate' button to translate text from initial <br/> "
-				                + "language to desired language.</html>");
+				                + "on the 'Translate' button to translate from s<br/> "
+				                + "spelling. Possible errors in spelling will be underlined and <br/> "
+				                + "when right clicked, will provide suggestions for correction.</html>");
+																				//^^ Above text displays a helpful tip for users on how to use the translator
+		
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		scrollPane.setPreferredSize(new Dimension(400, 200));					//Initializes size of display for text
+		
+		JButton readButton = new JButton("OPEN FILE");							//Allows users to open text file to be translated
+		readButton.setToolTipText("Click to open a text file into the text area for translation.");
+		
+		JButton translateButton = new JButton("TRANSLATE");						//Button to translate text
+		translateButton.setToolTipText("Click to convert the language for the current text to the desired language.");
 		
 		JPanel panel = new JPanel();
+		
 		getContentPane().add(panel);
 		
-		
-		//Setting JMenuBar Details + actionListeners for MenuItems--> Open/Save files
-		JMenuBar menu = new JMenuBar();
-		setJMenuBar(menu);
-		menu.setOpaque(true);
-		
-		JMenu menuFile = new JMenu("File");
-		
-		menu.add(menuFile);
-		
-		JMenuItem open = new JMenuItem("Open File");
-		menuFile.add(open);
-		
-		JFileChooser fc = new JFileChooser();
-		
-		open.addActionListener(ev -> {
-			 int returnVal = fc.showOpenDialog(panel);
-		      if (returnVal == JFileChooser.APPROVE_OPTION) {
-		        File file = fc.getSelectedFile();
-		        try {
-		          BufferedReader input = new BufferedReader(new InputStreamReader(
-		              new FileInputStream(file)));
-		          textArea.read(input, "Reading File...");
-		        } catch (Exception e) {
-		          e.printStackTrace();
-		        }
-		      } else {
-		        System.out.println("Operation Cancelled...");
-		      }
-		});
-		
-		JMenuItem save = new JMenuItem("Save File");
-		menuFile.add(save);
-		
-		save.addActionListener(ev -> {
-			int returnVal = fc.showOpenDialog(panel);
-		      if (returnVal == JFileChooser.APPROVE_OPTION) {
-		          String area = textArea.getText();
-		    	  File file = fc.getSelectedFile();
-		        try {
-		           FileWriter fw = new FileWriter(file.getPath());
-		           fw.write(area);
-		           fw.flush();
-		           fw.close();
-		           
-		        } catch (Exception e) {
-		          e.printStackTrace();
-		        }
-		      } else {
-		        System.out.println("Operation Cancelled...");
-		      }
-		});
-		
-		/**
-		 *Adding JButton with ActionListener that calls the Translation
-		 *class's method to call and fetch a translation from the Google
-		 *API URL.
-		 *
-		 */
-		
-		JButton translateButton = new JButton("TRANSLATE");
-		translateButton.putClientProperty("Quaqua.Button.style", "bevel");
-        translateButton.setFont(translateButton.getFont().deriveFont(Font.BOLD));
-		translateButton.setToolTipText("Click to convert the language for the current text to the desired language.");
-	
-		//Uses input from the JComboBoxs and the text area to send to the translation method.
 		translateButton.addActionListener(ev -> {
 			Translation translate = new Translation();
 			try {
@@ -148,25 +86,37 @@ public TranslationGui() {
 				endLanguage.setSelectedIndex(-1);
 			} catch (Exception e) {
 				e.printStackTrace();
-				JOptionPane.showMessageDialog(panel, "Please choose the appropriate 'Start' and 'End' Language Formats.");
 			}
 		});
+	    
+		readButton.addActionListener(ev -> {
+	      int returnVal = fc.showOpenDialog(panel);
+	      if (returnVal == JFileChooser.APPROVE_OPTION) {
+	        File file = fc.getSelectedFile();
+	        try {
+	          BufferedReader input = new BufferedReader(new InputStreamReader(
+	              new FileInputStream(file)));
+	          textArea.read(input, "Reading File...");							//Reads file for translation
+	        } catch (Exception e) {
+	          e.printStackTrace();
+	        }
+	      } else {
+	        System.out.println("Operation Cancelled...");						//If unsuccessful, prints message
+	      }
+	    });
 
-		
 		JLabel addStart = new JLabel("Select start language:");
 		JLabel addEnd = new JLabel("Select end language:");
 		
-		//Chose GridLayout for panel because it allows uniform size for all buttons
-		JPanel box = new JPanel(new GridLayout(6,0));
-		box.add(addStart);
-		box.add(startLanguage);
-		box.add(addEnd);
-		box.add(endLanguage);
-		box.add(translateButton);
+		JPanel box = new JPanel(new GridLayout(6,0));							//Initalizes 6 boxes in a grid formation for GUI
+		box.add(addStart);														//Creates box for "Select start language"
+		box.add(startLanguage);													//Creates box for selected start language
+		box.add(addEnd);														//Creates box for "Select end language"
+		box.add(endLanguage);													//Creates box for selected end language
+		box.add(readButton);													//Creates box for READ button
+		box.add(translateButton);												//Creates box for TRANSLATE button
 		
-	    
-		panel.add(scrollPane, BorderLayout.CENTER);
+	    panel.add(scrollPane, BorderLayout.CENTER);
 	    panel.add(box);
-	    
 	  }
 }
