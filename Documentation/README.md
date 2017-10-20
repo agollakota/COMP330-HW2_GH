@@ -1,4 +1,4 @@
-#**CAZAPro(TM)**
+# **CAZAPro(TM)**
 -----------------------
 CAZAPro is a note-taking tool that simplifies the lives of multitasking, busy individuals. 
 
@@ -6,37 +6,37 @@ CAZAPro is a note-taking tool that simplifies the lives of multitasking, busy in
 
 
 
-##**Technologies**
+## **Technologies**
 --------------------------------
-###Tools
+### Tools
 
 [Free TTS](https://freetts.sourceforge.io/)
 [Google Translate API](https://cloud.google.com/translate/)
 [JOrtho Spell Checker](http://jortho.sourceforge.net/)
 
-###Design
+### Design
 
 [JTattoo](http://www.jtattoo.net/)
 [JCalendar](https://toedter.com/jcalendar/)
 
-###Testing
+### Testing
 
 [JUnit Testing](http://junit.org/)
 [Groovy Testing](http://groovy-lang.org/testing.html) 
 
-###Encoding
+### Encoding
 
 [Jave](http://www.sauronsoftware.it/projects/jave/)
 
-##**Addendum**
+## **Addendum**
 --------------------------------
-###Adapted Code
+### Adapted Code
 [Google Translate API workaround](http://archana-testing.blogspot.com/2016/02/calling-google-translation-api-in-java.html)
 [Paint GUI Example](http://forum.codecall.net/topic/58137-java-mini-paint-program/)
 
-###Support
+### Support
 [Google Translate API ISO Code List](http://archana-testing.blogspot.com/2016/02/calling-google-translation-api-in-java.html)
 
-###Most Annoying Bug Award
+### Most Annoying Bug Award
 
 [File.delete() issues](https://stackoverflow.com/questions/991489/file-delete-returns-false-even-though-file-exists-file-canread-file-canw/21522963#21522963) - Time Expenditure: 4.5 hours  :(
