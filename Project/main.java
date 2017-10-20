@@ -19,7 +19,7 @@ public class main{
 	    
    //going to just call GUI.java which encorporates all of the different GUI's for the project
   
-    @Test
+    //@Test
        Calendar c = new Calendar();    //
         c.start();
 
@@ -29,7 +29,7 @@ public class main{
         //assertEquals("0 x 0 must be 0", 0, tester.multiply(0, 0));
     
 
-  @Test
+ // @Test
 
        DrawArea d = new DrawArea();
         d.start();
@@ -46,35 +46,35 @@ public class main{
 
 
 
-NotePad np = new NotePad();
-np.start();
+       NotePad np = new NotePad();
+        np.start();
 
 //NoteReader nr = new NoteReader();
 //nr.start(); ---------------------> This one might not be needed as the note reader gui might be called
 //directly within the GUI.java
 
 
-SpellChecker sc = new SpellChecker();
-sc.start();
+       SpellChecker sc = new SpellChecker();
+        sc.start();
 
 
 
-SwingPaint sp = new SwingPaint();
-sp.start();
+       SwingPaint sp = new SwingPaint();
+        sp.start();
 
-TestMain tm = new TestMain();
-tm.start();
+       TestMain tm = new TestMain();
+        tm.start();
 
-Translation t = new Translation ();
-t.start();
+       Translation t = new Translation ();
+        t.start();
 
 
 
-Translator tr = new Translator();
-tr.start();
+       Translator tr = new Translator();
+       tr.start();
 
-TTSConvert tts = new TTSConvert();
-tts.start();
+       TTSConvert tts = new TTSConvert();
+        tts.start();
 
 
 
