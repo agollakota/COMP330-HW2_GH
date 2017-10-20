@@ -15,7 +15,7 @@ class CalenderTest extends GroovyTestCase {
    
    
    
-   @Override
+   @Test
 			public void propertyChange() {
 			     System.out.println("testing propertychange");
 			}
