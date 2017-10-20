@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -7,12 +8,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.InputStreamReader;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -34,7 +30,7 @@ public class PaintGui extends JFrame {
 
 		createView();
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage("octopus.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/resources/octopus.png")));
 
 		setMinimumSize(new Dimension(600, 600));
 
@@ -51,7 +47,6 @@ public class PaintGui extends JFrame {
 		final Paint paint = new Paint();
 		Container content = getContentPane();
 		content.setLayout(new BorderLayout());
-
 		content.add(paint, BorderLayout.CENTER);
 
 		// Setting JPanel details
@@ -60,49 +55,49 @@ public class PaintGui extends JFrame {
 		panel.setMinimumSize(new Dimension(32, 68));
 		panel.setMaximumSize(new Dimension(32, 68));
 
-		//Setting JMenuBar Details + actionListeners for MenuItems--> Open/Save files
+		// Setting JMenuBar Details + actionListeners for MenuItems--> Open/Save files
 		JMenuBar menu = new JMenuBar();
 		setJMenuBar(menu);
 		menu.setOpaque(true);
-		
+
 		JMenu menuFile = new JMenu("File");
-		
+
 		menu.add(menuFile);
-		
+
 		JMenuItem open = new JMenuItem("Open File");
 		menuFile.add(open);
-		
+
 		JFileChooser fc = new JFileChooser();
-		
+
 		open.addActionListener(ev -> {
-			 int returnVal = fc.showOpenDialog(panel);
-		      if (returnVal == JFileChooser.APPROVE_OPTION) {
-		        File file = fc.getSelectedFile();
-		        try {
-		        	paint.load(file);
-		        } catch (Exception e) {
-		          e.printStackTrace();
-		        }
-		      } else {
-		        System.out.println("Operation Cancelled...");
-		      }
+			int returnVal = fc.showOpenDialog(panel);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+				try {
+					paint.load(file);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else {
+				System.out.println("Operation Cancelled...");
+			}
 		});
-		
+
 		JMenuItem save = new JMenuItem("Save File");
 		menuFile.add(save);
-		
+
 		save.addActionListener(ev -> {
-			int returnVal = fc.showOpenDialog(panel);
-		      if (returnVal == JFileChooser.APPROVE_OPTION) {
-		    	  File file = fc.getSelectedFile();
-		        try {
-		           paint.save(file);
-		        } catch (Exception e) {
-		          e.printStackTrace();
-		        }
-		      } else {
-		        System.out.println("Operation Cancelled...");
-		      }
+			int returnVal = fc.showSaveDialog(panel);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+				try {
+					paint.save(file);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else {
+				System.out.println("Operation Cancelled...");
+			}
 		});
 		// Setting buttons for changing colors
 		JButton redButton = new JButton();
@@ -197,7 +192,7 @@ public class PaintGui extends JFrame {
 		});
 
 		// Setting png file as background for eraserButton
-		ImageIcon tempIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("erasericon.png"));
+		ImageIcon tempIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/resources/erasericon.png")));
 		Image img = tempIcon.getImage();
 		// resizes erasericon.png
 		Image newimg = img.getScaledInstance(16, 16, java.awt.Image.SCALE_SMOOTH);
@@ -217,7 +212,7 @@ public class PaintGui extends JFrame {
 
 		// Setting clear button for clearing screen of paint
 		// Setting png file as background for clearButton
-		ImageIcon fillIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("clearbutton.png"));
+		ImageIcon fillIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/resources/clearbutton.png")));
 		Image tempImg = fillIcon.getImage();
 
 		// resizes clearbutton.png
@@ -235,10 +230,10 @@ public class PaintGui extends JFrame {
 				paint.clear();
 			}
 		});
-		
+
 		// Setting smallerbrush button for clearing screen of paint
 		// Setting png file as background for smallButton
-		ImageIcon filler = new ImageIcon(Toolkit.getDefaultToolkit().getImage("smallerbrush.png"));
+		ImageIcon filler = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/resources/smallerbrush.png")));
 		Image holdImg = filler.getImage();
 
 		// resizes smallerbrush.png
@@ -263,7 +258,7 @@ public class PaintGui extends JFrame {
 
 		// Setting clear button for clearing screen of paint
 		// Setting png file as background for bigButton
-		ImageIcon bigIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("biggerbrush.png"));
+		ImageIcon bigIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/resources/biggerbrush.png")));
 		Image bigImg = bigIcon.getImage();
 
 		// resizes biggerbrush.png

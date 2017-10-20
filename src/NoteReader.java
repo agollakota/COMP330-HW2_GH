@@ -1,3 +1,4 @@
+
 import java.util.*;
 import java.io.File;
 import java.util.regex.*;
@@ -38,9 +39,8 @@ public class NoteReader {
 		} else {
 			System.out.println("Path does not exist.");
 		}
-		for (String s : list)
-		{
-		    listString += "[" + s + "]";
+		for (String s : list) {
+			listString += "[" + s + "]";
 		}
 		return (listString);
 	}
@@ -52,7 +52,7 @@ public class NoteReader {
 		File path = dir;
 		String listString = "List: ";
 		ArrayList<String> list = new ArrayList<String>();
-		
+
 		if (path.exists()) {
 			Pattern p = Pattern.compile(keyword);
 			ArrayList<String> c = new ArrayList<String>();
@@ -84,17 +84,12 @@ public class NoteReader {
 			}
 			Collections.sort(list);
 			Collections.reverse(list);
-
-			for (String ele : list) {
-				System.out.println(ele);
-			}
 		} else {
 			System.out.println("Path does not exist.");
 
 		}
-		for (String s : list)
-		{
-		    listString +="[" + s + "]";
+		for (String s : list) {
+			listString += "[" + s + "]";
 		}
 		return listString;
 	}
@@ -194,7 +189,7 @@ public class NoteReader {
 		File path = dir;
 		String listString = "List: ";
 		ArrayList<String> list = new ArrayList<String>();
-		
+
 		if (path.exists()) {
 			Pattern p = Pattern.compile("@");
 			Pattern b = Pattern.compile("#");
@@ -232,9 +227,8 @@ public class NoteReader {
 		} else {
 			System.out.println("Path does not exist.");
 		}
-		for (String s : list)
-		{
-		    listString += "[" + s + "]";
+		for (String s : list) {
+			listString += "[" + s + "]";
 		}
 		return listString;
 	}

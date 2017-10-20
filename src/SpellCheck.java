@@ -24,15 +24,16 @@ import java.io.InputStreamReader;
 @SuppressWarnings("serial")
 
 public class SpellCheck extends JFrame {
-	
-	//setting up JOrtho
+
+	// setting up JOrtho
 	public SpellCheck() {
-		
-		SpellChecker.setUserDictionaryProvider(new FileUserDictionary());      
+
+		SpellChecker.setUserDictionaryProvider(new FileUserDictionary());
 		SpellChecker.registerDictionaries(this.getClass().getResource("/dictionary"), "en");
-		
+
 	}
-	//registering JOrtho to JComponent
+
+	// registering JOrtho to JComponent
 	public void checker(JTextArea textArea) {
 		SpellChecker.register(textArea);
 	}

@@ -1,3 +1,4 @@
+
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
@@ -39,6 +40,9 @@ import org.apache.commons.io.FileUtils;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+//Class allows for memo creation on specified calendar dates.
+//Hybrid class made in unison with Windows Builder and Manual Coding
+
 @SuppressWarnings("serial")
 public class Calendar extends JFrame {
 
@@ -48,11 +52,12 @@ public class Calendar extends JFrame {
 
 	public Calendar() {
 
+		// Setting JFrame properties
 		super("Calendar");
 
 		initGUI();
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage("octopus.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/resources/octopus.png")));
 
 		pack();
 
@@ -61,7 +66,8 @@ public class Calendar extends JFrame {
 		setLocationRelativeTo(null);
 	}
 
-	private synchronized void initGUI() {
+	private void initGUI() {
+		// Setting frame layout
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 0, 0, 0, 4 };
 		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 4 };
@@ -69,7 +75,9 @@ public class Calendar extends JFrame {
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		getContentPane().setLayout(gridBagLayout);
 
+		// Setting JCalendar details
 		JCalendar calendar = new JCalendar();
+		calendar.setToolTipText("Select any date to view or create memos.");
 		GridBagConstraints gbc_calendar = new GridBagConstraints();
 		gbc_calendar.gridheight = 4;
 		gbc_calendar.insets = new Insets(0, 0, 0, 5);
@@ -78,6 +86,7 @@ public class Calendar extends JFrame {
 		gbc_calendar.gridy = 0;
 		getContentPane().add(calendar, gbc_calendar);
 
+		// Setting JLabel details
 		JLabel lblNewLabel = new JLabel("Select a Date");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.gridwidth = 3;
@@ -86,6 +95,7 @@ public class Calendar extends JFrame {
 		gbc_lblNewLabel.gridy = 0;
 		getContentPane().add(lblNewLabel, gbc_lblNewLabel);
 
+		// Setting ScrollPane/TextArea
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridheight = 2;
@@ -96,11 +106,13 @@ public class Calendar extends JFrame {
 		getContentPane().add(scrollPane, gbc_scrollPane);
 
 		JTextArea textArea = new JTextArea();
+		textArea.setToolTipText("Enter and edit text in this area to save as a memo.");
 		textArea.setEditable(true);
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
 		scrollPane.setViewportView(textArea);
 
+		// Adding property listener to find date selected on calendar
 		calendar.addPropertyChangeListener(new PropertyChangeListener() {
 			@Override
 			public void propertyChange(PropertyChangeEvent e) {
@@ -135,7 +147,9 @@ public class Calendar extends JFrame {
 			}
 		});
 
-		JButton btnNewButton = new JButton("SAVE");
+		// Saves memo specified for certain date in directory
+		JButton btnNewButton = new JButton("Save");
+		btnNewButton.setToolTipText("Click to save memo for chosen date.");
 		btnNewButton.addActionListener(ev -> {
 			String area = textArea.getText();
 
@@ -164,17 +178,19 @@ public class Calendar extends JFrame {
 		});
 
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 28, 5, 5);
+		gbc_btnNewButton.insets = new Insets(0, 32, 5, 5);
 		gbc_btnNewButton.gridx = 1;
 		gbc_btnNewButton.gridy = 1;
 
 		getContentPane().add(btnNewButton, gbc_btnNewButton);
 
-		JButton btnNewButton_1 = new JButton("DIRECTORY");
+		// Selects directory for storing memos
+		JButton btnNewButton_1 = new JButton("Directory");
+		btnNewButton_1.setToolTipText("Click to select directory for storing memos.");
 		btnNewButton_1.addActionListener(ev -> {
 			JFileChooser chooser = new JFileChooser();
 			chooser.setCurrentDirectory(new java.io.File("."));
-			chooser.setDialogTitle("choosertitle");
+			chooser.setDialogTitle("Open Directory");
 			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
 			chooser.setAcceptAllFileFilterUsed(false);

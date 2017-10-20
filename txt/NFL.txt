@@ -1,0 +1,44 @@
+!NFL
+
+NFL - 2017 Regular Season
+NFL Team	Conf	Div	W	L	T	 Pct	PF	PA	Net Pts	TD	Home	Road	Div	Pct	Conf	Pct	Non-Conf	Streak	Last 5
+Atlanta Falcons	NFC	NCS	2	0	0	1.000	57	40	17	6	1-0	1-0	0-0	.000	2-0	1.000	0-0	2W	2-0
+Baltimore Ravens	AFC	ACN	2	0	0	1.000	44	10	34	5	1-0	1-0	2-0	1.000	2-0	1.000	0-0	2W	2-0
+Carolina Panthers	NFC	NCS	2	0	0	1.000	32	6	26	2	1-0	1-0	0-0	.000	1-0	1.000	1-0	2W	2-0
+Denver Broncos	AFC	ACW	2	0	0	1.000	66	38	28	9	2-0	0-0	1-0	1.000	1-0	1.000	1-0	2W	2-0
+Detroit Lions	NFC	NCN	2	0	0	1.000	59	33	26	8	1-0	1-0	0-0	.000	2-0	1.000	0-0	2W	2-0
+Kansas City Chiefs	AFC	ACW	2	0	0	1.000	69	47	22	9	1-0	1-0	0-0	.000	1-0	1.000	1-0	2W	2-0
+Miami Dolphins	AFC	ACE	1	0	0	1.000	19	17	2	1	0-0	1-0	0-0	.000	1-0	1.000	0-0	1W	1-0
+Oakland Raiders	AFC	ACW	2	0	0	1.000	71	36	35	8	1-0	1-0	0-0	.000	2-0	1.000	0-0	2W	2-0
+Pittsburgh Steelers	AFC	ACN	2	0	0	1.000	47	27	20	5	1-0	1-0	1-0	1.000	1-0	1.000	1-0	2W	2-0
+Tampa Bay Buccaneers	NFC	NCS	1	0	0	1.000	29	7	22	3	1-0	0-0	0-0	.000	1-0	1.000	0-0	1W	1-0
+Los Angeles Rams	NFC	NCW	2	1	0	.667	107	75	32	12	1-1	1-0	1-0	1.000	1-1	.500	1-0	1W	2-1
+Arizona Cardinals	NFC	NCW	1	1	0	.500	39	48	-9	4	0-0	1-1	0-0	.000	0-1	.000	1-0	1W	1-1
+Buffalo Bills	AFC	ACE	1	1	0	.500	24	21	3	3	1-0	0-1	1-0	1.000	1-0	1.000	0-1	1L	1-1
+Dallas Cowboys	NFC	NCE	1	1	0	.500	36	45	-9	3	1-0	0-1	1-0	1.000	1-0	1.000	0-1	1L	1-1
+Green Bay Packers	NFC	NCN	1	1	0	.500	40	43	-3	5	1-0	0-1	0-0	.000	1-1	.500	0-0	1L	1-1
+Houston Texans	AFC	ACS	1	1	0	.500	20	38	-18	2	0-1	1-0	0-1	.000	1-1	.500	0-0	1W	1-1
+Jacksonville Jaguars	AFC	ACS	1	1	0	.500	45	44	1	5	0-1	1-0	1-1	.500	1-1	.500	0-0	1L	1-1
+Minnesota Vikings	NFC	NCN	1	1	0	.500	38	45	-7	4	1-0	0-1	0-0	.000	1-0	1.000	0-1	1L	1-1
+New England Patriots	AFC	ACE	1	1	0	.500	63	62	1	7	0-1	1-0	0-0	.000	0-1	.000	1-0	1W	1-1
+Philadelphia Eagles	NFC	NCE	1	1	0	.500	50	44	6	5	0-0	1-1	1-0	1.000	1-0	1.000	0-1	1L	1-1
+Seattle Seahawks	NFC	NCW	1	1	0	.500	21	26	-5	1	1-0	0-1	1-0	1.000	1-1	.500	0-0	1W	1-1
+Tennessee Titans	AFC	ACS	1	1	0	.500	53	42	11	5	0-1	1-0	1-0	1.000	1-1	.500	0-0	1W	1-1
+Washington Redskins	NFC	NCE	1	1	0	.500	44	50	-6	5	0-1	1-0	0-1	.000	1-1	.500	0-0	1W	1-1
+Chicago Bears	NFC	NCN	0	2	0	.000	24	52	-28	3	0-1	0-1	0-0	.000	0-2	.000	0-0	2L	0-2
+Cincinnati Bengals	AFC	ACN	0	2	0	.000	9	33	-24	0	0-2	0-0	0-1	.000	0-2	.000	0-0	2L	0-2
+Cleveland Browns	AFC	ACN	0	2	0	.000	28	45	-17	3	0-1	0-1	0-2	.000	0-2	.000	0-0	2L	0-2
+Indianapolis Colts	AFC	ACS	0	2	0	.000	22	62	-40	2	0-1	0-1	0-0	.000	0-0	.000	0-2	2L	0-2
+Los Angeles Chargers	AFC	ACW	0	2	0	.000	38	43	-5	5	0-1	0-1	0-1	.000	0-2	.000	0-0	2L	0-2
+New Orleans Saints	NFC	NCS	0	2	0	.000	39	65	-26	3	0-1	0-1	0-0	.000	0-1	.000	0-1	2L	0-2
+New York Giants	NFC	NCE	0	2	0	.000	13	43	-30	1	0-1	0-1	0-1	.000	0-2	.000	0-0	2L	0-2
+New York Jets	AFC	ACE	0	2	0	.000	32	66	-34	3	0-0	0-2	0-1	.000	0-2	.000	0-0	2L	0-2
+San Francisco 49ers	NFC	NCW	0	3	0	.000	51	76	-25	5	0-2	0-1	0-2	.000	0-3	.000	0-0	3L	0-3
+x - Clinched playoff
+y - Clinched Wild Card
+z - Clinched Division 
+* - Clinched Division and Homefield Advantage
+
+#footballseason
+#superbowl
+@chicagobears
