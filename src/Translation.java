@@ -23,7 +23,7 @@ public class Translation {
 		HttpURLConnection connection = (HttpURLConnection) con.openConnection();
 		connection.setRequestProperty("User-Agent", "Mozilla/5.0");
 
-		BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
 		String inputLine;
 		StringBuffer output = new StringBuffer();
 
