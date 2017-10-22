@@ -4,11 +4,11 @@ CAZAPro is a note-taking tool that simplifies the lives of multitasking, busy in
 
 *Included Features : Paint, Translator, Text-to-Speech, Calendar, SpellCheck, CAZAPad*
 
-## **To execute:**
+## **Installation:**
 --------------------------------
-1) Have JDK 7 installed on your device
-2) Download the JAR file from the repository
-3) Open the file from your dowloads folder and use the separate features.
+1) Install JDK 7 installed on your device
+2) Download the JAR file from the repository or clone the repository into a IDE of your choice
+3) Open the file from your dowloads folder and use the separate features
 
 
 
