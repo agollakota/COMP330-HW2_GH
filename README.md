@@ -3,6 +3,7 @@
 CAZAPro is a note-taking tool that simplifies the lives of multitasking, busy individuals. 
 
 *Look and Feel : Noire (JTattoo)*
+
 *Included Features : Paint, Translator, Text-to-Speech, Calendar, SpellCheck, CAZAPad*
 
 ## **Installation**
