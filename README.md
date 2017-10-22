@@ -2,6 +2,7 @@
 -----------------------
 CAZAPro is a note-taking tool that simplifies the lives of multitasking, busy individuals. 
 
+*Look and Feel : Noire (JTattoo)*
 *Included Features : Paint, Translator, Text-to-Speech, Calendar, SpellCheck, CAZAPad*
 
 ## **Installation**
@@ -29,17 +30,18 @@ CAZAPro is a note-taking tool that simplifies the lives of multitasking, busy in
 ### Text-to-Speech
 
 - Dictate any text files aloud with a supported voice provided by the FreeTTS library
-- Save text-to-speech audio files to the .mp3 format supported by JAVE encoding.
+- Save text-to-speech audio files to the .mp3 format supported by JAVE encoding
 
 ### Calendar
 
 - Specify a directory for storage of your memos
-- Calendar allows you to save memos attributed to the dates on the calendar
+- Calendar allows users to choose a date and save memos on that date
+- Calendar supported by the Jcalendar library
 - Upon specification of the directory and the presence of a memo for the current date, a notice will occur
 
 ### SpellCheck
 
-- Enter text and check for any spelling errors supported by the JOrtho library.
+- Enter text and check for any spelling errors supported by the JOrtho library
 - Enable/Disable real-time spellchecking (underlining for errors)
 - Open/Save supported for .txt files
 
@@ -70,11 +72,13 @@ CAZAPro is a note-taking tool that simplifies the lives of multitasking, busy in
 ### Design
 
 [JTattoo](http://www.jtattoo.net/)
+
 [JCalendar](https://toedter.com/jcalendar/)
 
 ### Testing
 
 [JUnit Testing](http://junit.org/)
+
 [Groovy Testing](http://groovy-lang.org/testing.html) 
 
 ### Encoding
