@@ -6,9 +6,9 @@ CAZAPro is a note-taking tool that simplifies the lives of multitasking, busy in
 
 ## **Installation:**
 --------------------------------
-1) Install JDK 7 installed on your device
-2) Download the JAR file from the repository or clone the repository into a IDE of your choice
-3) Open the file from your dowloads folder and use the separate features
+1) Ensure JDK 7 is installed on your device
+2) Download the JAR file from the repository 
+3) Open the file from your downloads folder
 
 
 
@@ -18,7 +18,9 @@ CAZAPro is a note-taking tool that simplifies the lives of multitasking, busy in
 ### Tools
 
 [Free TTS](https://freetts.sourceforge.io/)
+
 [Google Translate API](https://cloud.google.com/translate/)
+
 [JOrtho Spell Checker](http://jortho.sourceforge.net/)
 
 ### Design
@@ -39,6 +41,7 @@ CAZAPro is a note-taking tool that simplifies the lives of multitasking, busy in
 --------------------------------
 ### Adapted Code
 [Google Translate API workaround](http://archana-testing.blogspot.com/2016/02/calling-google-translation-api-in-java.html)
+
 [Paint GUI Example](http://forum.codecall.net/topic/58137-java-mini-paint-program/)
 
 ### Support
